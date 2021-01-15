@@ -2,7 +2,7 @@ import React, { useReducer, useContext, createContext, Dispatch } from "react";
 
 type State = {
   source_text: string;
-  generated_text: string[];
+  generated_texts: string[];
 };
 
 type Action =
@@ -25,7 +25,7 @@ function reducer(state: State, action: Action): State {
     case "SET_GEN_TEXT":
       return {
         ...state,
-        generated_text: action.texts,
+        generated_texts: action.texts,
       };
     case "CONCAT_TO_SRC_TEXT":
       return {
@@ -40,7 +40,7 @@ function reducer(state: State, action: Action): State {
 export function TextProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, {
     source_text: "",
-    generated_text: ["", "", "", "", ""],
+    generated_texts: ["", "", "", "", ""],
   });
 
   return (

@@ -18,7 +18,6 @@ function TextForm() {
         seedText: state.source_text,
       })
       .then((res: AxiosResponse<string[]>) => {
-        console.log(res.data);
         dispatch({ type: "SET_GEN_TEXT", texts: res.data });
       });
   };

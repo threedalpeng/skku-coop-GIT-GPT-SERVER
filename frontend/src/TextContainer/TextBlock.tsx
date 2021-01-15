@@ -36,16 +36,15 @@ type TextBlockProps = {
 };
 
 function TextBlock(props: TextBlockProps) {
-  const [text] = useState(props.text);
 
   const dispatch = useTextDispatch();
   const onClick = () => {
-    dispatch({ type: "CONCAT_TO_SRC_TEXT", text: text });
+    dispatch({ type: "CONCAT_TO_SRC_TEXT", text: props.text });
   };
 
   return (
     <TBlock onClick={onClick}>
-      <p>{text}</p>
+      <p>{props.text}</p>
     </TBlock>
   );
 }

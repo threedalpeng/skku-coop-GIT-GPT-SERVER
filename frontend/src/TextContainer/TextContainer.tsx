@@ -6,10 +6,10 @@ import { useTextState } from "../TextContext";
 
 function TextContainer() {
   const state = useTextState();
-
+  
   return (
     <Card>
-      {state.generated_text.map((text, index) => (
+      {state.generated_texts.map((text, index) => (
         <TextBlock key={index} text={text} />
       ))}
     </Card>
