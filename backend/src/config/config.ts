@@ -1,7 +1,7 @@
 const config = {
   path: {
     scriptPath: '',
-    serverAddress: '',
+    engineServerPath: 'http://localhost:31415',
   },
 };
 

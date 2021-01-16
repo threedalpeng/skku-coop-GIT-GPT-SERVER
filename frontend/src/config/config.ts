@@ -1,6 +1,6 @@
 const config = {
   path: {
-    server: "http://localhost:12345",
+    server: "http://115.145.212.100:53344",
   },
 };
 

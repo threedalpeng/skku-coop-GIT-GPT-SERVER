@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import axios, { AxiosResponse } from 'axios';
+import config from 'src/config/config';
 import { EngineService } from 'src/engine/engine.service';
 
 type GenTexts = {
-  texts: string[];
+  generated_texts: string[];
 };
 
 @Injectable()
@@ -12,11 +13,11 @@ export class GenService {
 
   async getGeneratedText(sourceText: string): Promise<string[]> {
     const res: AxiosResponse<GenTexts> = await axios.post(
-      'http://localhost:19812/api/gen',
+      config.path.engineServerPath + '/api/gen',
       {
         seedText: sourceText,
       },
     );
-    return res.data.texts;
+    return res.data.generated_texts;
   }
 }
