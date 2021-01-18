@@ -15,7 +15,7 @@ const TextButton = styled.button`
 
   position: static;
   width: 608px;
-  height: 50px;
+  height: 5rem;
 
   flex: none;
   order: 0;
@@ -44,11 +44,12 @@ type TextBlockProps = {
 
 function TextBlock(props: TextBlockProps) {
   const dispatch = useTextDispatch();
-  const onSubmit = () => {
-    dispatch({ type: "CONCAT_TO_SRC_TEXT", text: props.text });
+  const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    if (e.currentTarget.textContent)
+      dispatch({ type: "CONCAT_TO_SRC_TEXT", text: e.currentTarget.textContent });
   };
 
-  return <TextButton onSubmit={onSubmit}>{props.text}</TextButton>;
+  return <TextButton onClick={onClick}>{props.text}</TextButton>;
 }
 
 export default TextBlock;
