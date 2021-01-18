@@ -3,12 +3,22 @@ import React, { useReducer, useContext, createContext, Dispatch } from "react";
 type State = {
   source_text: string;
   generated_texts: string[];
+  option: {
+    model: string;
+    rcmd_type: string;
+    rcmd_num: string;
+    temperature: string;
+  };
 };
 
 type Action =
   | { type: "SET_SRC_TEXT"; text: string }
   | { type: "SET_GEN_TEXT"; texts: string[] }
-  | { type: "CONCAT_TO_SRC_TEXT"; text: string };
+  | { type: "CONCAT_TO_SRC_TEXT"; text: string }
+  | { type: "SET_MODEL"; model: string }
+  | { type: "SET_RCMD_TYPE"; rcmd_type: string }
+  | { type: "SET_RCMD_NUM"; rcmd_num: string }
+  | { type: "SET_TEMPERATURE"; temperature: string };
 
 type TextDispatch = Dispatch<Action>;
 
@@ -32,6 +42,38 @@ function reducer(state: State, action: Action): State {
         ...state,
         source_text: state.source_text.concat(action.text),
       };
+    case "SET_MODEL":
+      return {
+        ...state,
+        option: {
+          ...state.option,
+          model: action.model,
+        },
+      };
+    case "SET_RCMD_TYPE":
+      return {
+        ...state,
+        option: {
+          ...state.option,
+          rcmd_type: action.rcmd_type,
+        },
+      };
+    case "SET_RCMD_NUM":
+      return {
+        ...state,
+        option: {
+          ...state.option,
+          rcmd_num: action.rcmd_num,
+        },
+      };
+    case "SET_TEMPERATURE":
+      return {
+        ...state,
+        option: {
+          ...state.option,
+          temperature: action.temperature,
+        },
+      };
     default:
       throw new Error("Unhandled action");
   }
@@ -40,7 +82,19 @@ function reducer(state: State, action: Action): State {
 export function TextProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, {
     source_text: "",
-    generated_texts: ["", "", "", "", ""],
+    generated_texts: [
+      "1. First Line",
+      "2. First Line",
+      "3. First Line",
+      "4. First Line",
+      "5. First Line",
+    ],
+    option: {
+      model: "cream-100x100",
+      rcmd_type: "sentence",
+      rcmd_num: "5",
+      temperature: "2.0",
+    },
   });
 
   return (

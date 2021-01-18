@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import "@blueprintjs/core/lib/css/blueprint.css";
+// import "@blueprintjs/core/lib/css/blueprint.css";
 // import "@blueprintjs/core/lib/css/blueprint-icons.css"
 import reportWebVitals from "./reportWebVitals";
 

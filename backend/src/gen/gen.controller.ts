@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
+import { GenType } from 'src/types';
 import { GenService } from './gen.service';
 
 @Controller('gen')
@@ -11,7 +12,7 @@ export class GenController {
   }
 
   @Post()
-  getGeneratedTexts(@Body() textData: { seedText: string }) {
-    return this.genService.getGeneratedText(textData.seedText);
+  getGeneratedTexts(@Body() textData: GenType) {
+    return this.genService.getGeneratedText(textData);
   }
 }
