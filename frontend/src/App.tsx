@@ -11,8 +11,6 @@ const OptionPage = styled.div`
   position: static;
   width: 100%;
   height: 8vh;
-  left: 0px;
-  top: 196px;
 
   flex: none;
   order: 1;
@@ -43,11 +41,11 @@ const TextPage = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 19px 10px 19px 20px;
+    padding: 0px 20px;
 
     position: static;
     width: 1270px;
-    height: 627px;
+    height: 90%;
     left: 85px;
     top: 100px;
 
@@ -64,7 +62,7 @@ function App() {
       <PageHeader />
       <TextProvider>
         <OptionPage>
-          <SelectorContainer></SelectorContainer>
+          <SelectorContainer />
         </OptionPage>
         <TextPage>
           <div className="text-component-wrapper">

@@ -7,9 +7,7 @@ import styled from "styled-components";
 const FormGroup = styled.div`
   position: static;
   width: 526px;
-  height: 90%;
-  left: 20px;
-  top: 28px;
+  height: 100%;
 
   flex: none;
   order: 0;
@@ -28,9 +26,9 @@ const FormGroup = styled.div`
 
     position: relative;
     width: 450px;
-    height: 480px;
+    height: 90%;
     left: calc(50% - 450px / 2);
-    top: calc(50% - 480px / 2);
+    top: 5%;
 
     text-align: left;
   }
@@ -59,7 +57,7 @@ const FormGroup = styled.div`
     width: auto;
     height: 2px;
 
-    background: #d5d5d5;
+    background: #9b9b9b;
 
     /* Inside Auto Layout */
 

@@ -32,12 +32,14 @@ const Selector = styled.div`
   flex-grow: 0;
   margin: 10px 20px;
 
-  border-color: #55271d;
+  /*
+  border-color: #55271d;*/
+  border-color: transparent;
   border-width: 1px;
   border-radius: 10px;
   border-style: solid;
 
-  filter: drop-shadow(0px 2px 2px rgba(83, 38, 38, 0.25));
+  filter: drop-shadow(0px 2px 2px rgba(58, 31, 31, 0.25));
 
   .selector-label {
     display: flex;
@@ -54,7 +56,7 @@ const Selector = styled.div`
 
     background: linear-gradient(
       180deg,
-      #ffa2a2 0%,
+      #ffa2a2 100%,
       rgba(255, 189, 189, 0.66) 100%
     );
 
