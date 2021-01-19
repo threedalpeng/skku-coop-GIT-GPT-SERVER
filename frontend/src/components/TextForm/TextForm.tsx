@@ -7,7 +7,7 @@ import styled from "styled-components";
 const FormGroup = styled.div`
   position: static;
   width: 526px;
-  height: 571px;
+  height: 90%;
   left: 20px;
   top: 28px;
 
