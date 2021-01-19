@@ -84,10 +84,10 @@ export function TextProvider({ children }: { children: React.ReactNode }) {
     source_text: "",
     generated_texts: [
       "1. First Line",
-      "2. First Line",
-      "3. First Line",
-      "4. First Line",
-      "5. First Line",
+      "2. Second Line",
+      "3. Third, and Loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong Line",
+      "4. Fourth Line",
+      "5. Fifth, and another Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong, and also\nVertically\nLong\nLine",
     ],
     option: {
       model: "cream-100x100",

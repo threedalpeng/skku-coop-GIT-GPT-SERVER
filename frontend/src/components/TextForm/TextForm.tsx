@@ -12,7 +12,6 @@ const FormGroup = styled.div`
   flex: none;
   order: 0;
   flex-grow: 0;
-  margin: 47.5px 0px;
 
   background: #fff5f5;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

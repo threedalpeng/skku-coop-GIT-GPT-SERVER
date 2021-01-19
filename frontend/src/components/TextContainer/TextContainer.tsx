@@ -4,15 +4,16 @@ import { useTextState } from "../../TextContext";
 import styled from "styled-components";
 
 const TextGroup = styled.div`
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 19px 16px;
 
   position: static;
   width: 640px;
-  height: 95%;
+  height: fit-content;
+  max-height: 100%;
 
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
@@ -23,7 +24,6 @@ const TextGroup = styled.div`
 
   flex: none;
   order: 1;
-  margin: 47.5px 0px;
 
   .scrollable {
     display: flex;

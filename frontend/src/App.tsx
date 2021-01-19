@@ -9,7 +9,7 @@ import TextContainer from "./components/TextContainer/TextContainer";
 
 const OptionPage = styled.div`
   position: static;
-  width: 100%;
+  width: 100vw;
   height: 8vh;
 
   flex: none;
@@ -26,7 +26,7 @@ const TextPage = styled.div`
   align-items: center;
 
   position: static;
-  width: 100%;
+  width: 100vw;
   height: 74vh;
   left: 0px;
   top: 293px;

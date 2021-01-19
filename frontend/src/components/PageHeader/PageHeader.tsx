@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const HeaderBar = styled.div`
   position: static;
-  width: 100%;
+  width: 100vw;
   height: 18vh;
   font-size: 5vh;
   left: 0px;

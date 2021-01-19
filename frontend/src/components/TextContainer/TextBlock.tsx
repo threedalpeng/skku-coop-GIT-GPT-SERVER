@@ -3,10 +3,6 @@ import styled from "styled-components";
 import { useTextDispatch } from "../../TextContext";
 
 const TextButton = styled.button`
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +11,8 @@ const TextButton = styled.button`
 
   position: static;
   width: 608px;
-  height: 5rem;
+  height: fit-content;
+  min-height: 4em;
 
   flex: none;
   order: 0;
@@ -27,6 +24,16 @@ const TextButton = styled.button`
   border-radius: 20px;
   border-width: 0px;
   outline: none;
+
+  p {
+    display: block;
+    margin: 0.5em;
+    width: 90%;
+    max-width: 90%;
+    color: #0a0909;
+    word-break: break-all;
+    white-space: pre-line;
+  }
 
   :hover {
     box-shadow: inset 0px 2px 8px 2px rgba(250, 84, 84, 0.25);
@@ -46,10 +53,17 @@ function TextBlock(props: TextBlockProps) {
   const dispatch = useTextDispatch();
   const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (e.currentTarget.textContent)
-      dispatch({ type: "CONCAT_TO_SRC_TEXT", text: e.currentTarget.textContent });
+      dispatch({
+        type: "CONCAT_TO_SRC_TEXT",
+        text: e.currentTarget.textContent,
+      });
   };
 
-  return <TextButton onClick={onClick}>{props.text}</TextButton>;
+  return (
+    <TextButton onClick={onClick}>
+      <p>{props.text}</p>
+    </TextButton>
+  );
 }
 
 export default TextBlock;
