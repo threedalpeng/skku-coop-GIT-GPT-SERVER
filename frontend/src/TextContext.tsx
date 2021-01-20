@@ -1,4 +1,6 @@
+import axios, { AxiosResponse } from "axios";
 import React, { useReducer, useContext, createContext, Dispatch } from "react";
+import config from "./config/config";
 
 type State = {
   source_text: string;
@@ -18,7 +20,8 @@ type Action =
   | { type: "SET_MODEL"; model: string }
   | { type: "SET_RCMD_TYPE"; rcmd_type: string }
   | { type: "SET_RCMD_NUM"; rcmd_num: string }
-  | { type: "SET_TEMPERATURE"; temperature: string };
+  | { type: "SET_TEMPERATURE"; temperature: string }
+  | { type: "SUBMIT_SRC_TEXT" };
 
 type TextDispatch = Dispatch<Action>;
 
@@ -74,6 +77,21 @@ function reducer(state: State, action: Action): State {
           temperature: action.temperature,
         },
       };
+    case "SUBMIT_SRC_TEXT":
+      axios
+        .post(config.path.server + "/api/gen", {
+          seedText: state.source_text,
+          option: state.option,
+        })
+        .then((res: AxiosResponse<string[]>) => {
+          return {
+            ...state,
+            generated_texts: res.data,
+          };
+        });
+      return {
+        ...state,
+      };
     default:
       throw new Error("Unhandled action");
   }
@@ -82,18 +100,12 @@ function reducer(state: State, action: Action): State {
 export function TextProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, {
     source_text: "",
-    generated_texts: [
-      "1. First Line",
-      "2. Second Line",
-      "3. Third, and Loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong Line",
-      "4. Fourth Line",
-      "5. Fifth, and another Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong, and also\nVertically\nLong\nLine",
-    ],
+    generated_texts: [],
     option: {
       model: "cream-100x100",
-      rcmd_type: "sentence",
-      rcmd_num: "5",
-      temperature: "2.0",
+      rcmd_type: "word",
+      rcmd_num: "3",
+      temperature: "1.0",
     },
   });
 

@@ -12,8 +12,8 @@ const config = {
           option_value: "cream-100x100",
         },
         {
-          option_name: "아이-1x100",
-          option_value: "eye-1x100",
+          option_name: "올리브영",
+          option_value: "oliveyoung-foam",
         },
       ],
     },
@@ -58,7 +58,7 @@ const config = {
       ],
     },
     {
-      label_name: "창의성",
+      label_name: "Temperature",
       label_value: "temperature",
       options: [
         {

@@ -10,10 +10,17 @@ const HeaderBar = styled.div`
   top: 0px;
   color: #fff4f4;
 
+  /*
   background: linear-gradient(
     271deg,
     #ffada8 2.37%,
     rgba(255, 118, 118, 0.85) 97.64%
+  );
+  */
+  background: linear-gradient(
+    271.39deg,
+    rgba(0, 117, 110, 0.85) 2.37%,
+    #120663 97.63%
   );
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 
@@ -26,7 +33,7 @@ const HeaderBar = styled.div`
     left: 10px;
     top: 20%;
     display: block-inline;
-    float: left
+    float: left;
   }
 
   .title_text_light {

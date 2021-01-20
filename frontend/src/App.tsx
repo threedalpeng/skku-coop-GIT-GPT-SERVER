@@ -4,8 +4,7 @@ import PageHeader from "./components/PageHeader/PageHeader";
 import styled from "styled-components";
 import { TextProvider } from "./TextContext";
 import SelectorContainer from "./components/OptionSelector/SelectorContainer";
-import TextForm from "./components/TextForm/TextForm";
-import TextContainer from "./components/TextContainer/TextContainer";
+import TextPage from "./components/TextPage/TextPage";
 
 const OptionPage = styled.div`
   position: static;
@@ -19,43 +18,6 @@ const OptionPage = styled.div`
   margin: 0px 0px;
 `;
 
-const TextPage = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  position: static;
-  width: 100vw;
-  height: 74vh;
-  left: 0px;
-  top: 293px;
-
-  flex: none;
-  order: 2;
-  flex-grow: 0;
-  margin: 0px 0px;
-
-  .text-component-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 20px;
-
-    position: static;
-    width: 1270px;
-    height: 90%;
-    left: 85px;
-    top: 100px;
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 0px 10px;
-  }
-`;
-
 function App() {
   return (
     <div className="App">
@@ -64,12 +26,7 @@ function App() {
         <OptionPage>
           <SelectorContainer />
         </OptionPage>
-        <TextPage>
-          <div className="text-component-wrapper">
-            <TextForm></TextForm>
-            <TextContainer></TextContainer>
-          </div>
-        </TextPage>
+        <TextPage />
       </TextProvider>
     </div>
   );

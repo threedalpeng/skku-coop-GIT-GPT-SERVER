@@ -59,6 +59,11 @@ const Selector = styled.div`
       #ffa2a2 100%,
       rgba(255, 189, 189, 0.66) 100%
     );
+    background: linear-gradient(
+      180deg,
+      #dffffd 0%,
+      rgb(220, 238, 255) 100%
+    );
 
     border-radius: 10px 0px 0px 10px;
     border-right-color: #55271d;
@@ -129,7 +134,10 @@ function SelectorMenu(props: SelectorType) {
       case "rcmd-number":
         return dispatch({ type: "SET_RCMD_NUM", rcmd_num: e.target.value });
       case "temperature":
-        return dispatch({ type: "SET_TEMPERATURE", temperature: e.target.value });
+        return dispatch({
+          type: "SET_TEMPERATURE",
+          temperature: e.target.value,
+        });
     }
   };
 

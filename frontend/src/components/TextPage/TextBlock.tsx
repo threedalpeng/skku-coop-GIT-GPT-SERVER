@@ -3,6 +3,13 @@ import styled from "styled-components";
 import { useTextDispatch } from "../../TextContext";
 
 const TextButton = styled.button`
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,7 +17,7 @@ const TextButton = styled.button`
   padding: 0px;
 
   position: static;
-  width: 608px;
+  width: calc(100% - 20px);
   height: fit-content;
   min-height: 4em;
 
