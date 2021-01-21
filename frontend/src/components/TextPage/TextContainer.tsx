@@ -35,6 +35,7 @@ const TextGroup = styled.div`
 
     overflow: auto;
     max-height: 90%;
+    width: 100%
   }
 `;
 

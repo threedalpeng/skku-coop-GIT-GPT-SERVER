@@ -1,6 +1,8 @@
 import React from "react";
 import { useTextDispatch, useTextState } from "../../TextContext";
 import styled from "styled-components";
+import axios, { AxiosResponse } from "axios";
+import config from "../../config/config";
 
 const FormGroup = styled.div`
   position: static;
@@ -103,11 +105,19 @@ function TextForm() {
   const onReset = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     dispatch({ type: "SET_SRC_TEXT", text: "" });
+    dispatch({ type: "SET_GEN_TEXT", texts: [] });
   };
 
   const onSubmit = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     e.preventDefault();
-    dispatch({ type: "SUBMIT_SRC_TEXT" });
+    axios
+      .post(config.path.server + "/api/gen", {
+        seedText: state.source_text,
+        option: state.option,
+      })
+      .then((res: AxiosResponse<string[]>) => {
+        dispatch({ type: "SET_GEN_TEXT", texts: res.data });
+      });
   };
 
   return (

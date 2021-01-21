@@ -1,6 +1,8 @@
+import axios, { AxiosResponse } from "axios";
 import React from "react";
 import styled from "styled-components";
-import { useTextDispatch } from "../../TextContext";
+import config from "../../config/config";
+import { useTextDispatch, useTextState } from "../../TextContext";
 import TextContainer from "./TextContainer";
 import TextForm from "./TextForm";
 
@@ -46,13 +48,20 @@ const TextPageDiv = styled.div`
 `;
 
 function TextPage() {
-  //const state = useTextState();
+  const state = useTextState();
   const dispatch = useTextDispatch();
 
   const onHotkeyEntered = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.ctrlKey) {
       if (e.key === "\n") {
-        dispatch({ type: "SUBMIT_SRC_TEXT" });
+        axios
+          .post(config.path.server + "/api/gen", {
+            seedText: state.source_text,
+            option: state.option,
+          })
+          .then((res: AxiosResponse<string[]>) => {
+            dispatch({ type: "SET_GEN_TEXT", texts: res.data });
+          });
       }
       /*
       else if (e.shiftKey && !isNaN(+e.key)) {

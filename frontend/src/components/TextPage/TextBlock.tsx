@@ -17,8 +17,8 @@ const TextButton = styled.button`
   padding: 0px;
 
   position: static;
-  width: calc(100% - 20px);
   height: fit-content;
+  width: 90%;
   min-height: 4em;
 
   flex: none;

@@ -9,10 +9,15 @@ export class GenService {
   constructor(private engineService: EngineService) {}
 
   async getGeneratedText(srcData: GenType): Promise<string[]> {
+    console.log(srcData);
     const res: AxiosResponse<GenTexts> = await axios.post(
       config.path.engineServerPath + '/api/gen',
       srcData,
     );
-    return res.data.generated_texts;
+    if (res.data.generated_texts) {
+      return res.data.generated_texts;
+    } else {
+      return [];
+    }
   }
 }
