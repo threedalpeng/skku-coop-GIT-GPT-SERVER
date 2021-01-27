@@ -4,15 +4,15 @@ const config = {
   },
   generator_option: [
     {
-      label_name: "모델",
+      label_name: "카테고리",
       label_value: "model",
       options: [
         {
-          option_name: "크림-100x100",
+          option_name: "크림",
           option_value: "cream-100x100",
         },
         {
-          option_name: "올리브영",
+          option_name: "클랜징폼",
           option_value: "oliveyoung-foam",
         },
       ],

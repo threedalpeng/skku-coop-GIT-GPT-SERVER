@@ -91,7 +91,19 @@ const InputForm = styled.textarea`
 
   resize: none;
 
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
+`;
+
+const FormButton = styled.button`
+  background: linear-gradient(
+    180deg,
+    rgba(221, 255, 248, 0.85) 30%,
+    #d5f2ff 98%
+  );
+  border-radius: 5px;
+  border-width: 0px;
+  padding: 5px 2em;
+  font-size: 18px;
 `;
 
 function TextForm() {
@@ -110,12 +122,14 @@ function TextForm() {
 
   const onSubmit = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     e.preventDefault();
+    let startTime = performance.now();
     axios
       .post(config.path.server + "/api/gen", {
         seedText: state.source_text,
         option: state.option,
       })
       .then((res: AxiosResponse<string[]>) => {
+        dispatch({ type: "SET_RES_TIME", time: performance.now() - startTime });
         dispatch({ type: "SET_GEN_TEXT", texts: res.data });
       });
   };
@@ -123,7 +137,7 @@ function TextForm() {
   return (
     <FormGroup>
       <form className="form-wrapper">
-        <label className="form-title">Seed Text</label>
+        <label className="form-title">리뷰 작성</label>
         <div className="form-divider"></div>
         <InputForm
           value={state.source_text}
@@ -140,9 +154,16 @@ function TextForm() {
           줄을 바꾸려면 [Shift] + [Enter]를 누르면 됩니다.
         </label>
         */}
-        <div>
-          <button onClick={onSubmit} style={{fontSize: "20px"}}>생성</button>{" "}
-          <button onClick={onReset} style={{fontSize: "20px"}}>리셋</button>
+        <label style={{ color: "white", marginBottom: "0.5em" }}>
+          {(state.response_time / 1000).toPrecision(3) + " s"}
+        </label>
+        <div style={{ display: "inline-block", width: "100%" }}>
+          <FormButton onClick={onSubmit} style={{ float: "left" }}>
+            생성
+          </FormButton>{" "}
+          <FormButton onClick={onReset} style={{ float: "right" }}>
+            리셋
+          </FormButton>
         </div>
       </form>
     </FormGroup>

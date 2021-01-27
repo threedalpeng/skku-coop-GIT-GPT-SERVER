@@ -43,12 +43,15 @@ const TextButton = styled.button`
   }
 
   :hover {
-    box-shadow: inset 0px 2px 8px 2px rgba(250, 84, 84, 0.25);
+    /*box-shadow: inset 0px 2px 8px 2px rgba(250, 84, 84, 0.25);*/
+    box-shadow: inset 0px 2px 8px 2px rgba(124, 224, 255, 0.61);
   }
 
   :focus {
-    box-shadow: inset 0px 2px 10px 0px rgba(255, 87, 87, 0.521);
-    background-color: #fdfafa;
+    /*box-shadow: inset 0px 2px 10px 0px rgba(255, 87, 87, 0.521);*/
+    box-shadow: inset 0px 2px 10px 0px rgba(87, 207, 255, 0.521);
+    /*background-color: #fdfafa;*/
+    background-color: #f2f9ff;
   }
 `;
 

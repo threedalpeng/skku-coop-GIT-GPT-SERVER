@@ -18,7 +18,7 @@ const HeaderBar = styled.div`
   );
   */
   background: linear-gradient(
-    271.39deg,
+    271deg,
     rgba(0, 117, 110, 0.85) 2.37%,
     #120663 97.63%
   );
@@ -60,10 +60,13 @@ function PageHeader() {
     <HeaderBar>
       <div className="title_block">
         <p className="title_text_bold">R</p>
-        <p className="title_text_light">eview</p>
+        <p className="title_text_light">oboTiPS</p>
+        {}
         <br />
-        <p className="title_text_bold">R</p>
-        <p className="title_text_light">ecommendation</p>
+        <p className="title_text_bold"></p>
+        <p className="title_text_light" style={{ fontSize: "2vh" }}>
+          딥러닝 AI가 추천해주는 리뷰 작성 도우미
+        </p>
       </div>
     </HeaderBar>
   );

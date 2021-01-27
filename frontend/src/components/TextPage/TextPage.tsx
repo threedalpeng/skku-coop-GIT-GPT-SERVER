@@ -54,12 +54,14 @@ function TextPage() {
   const onHotkeyEntered = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.ctrlKey) {
       if (e.key === "\n") {
+        let startTime = performance.now();
         axios
           .post(config.path.server + "/api/gen", {
             seedText: state.source_text,
             option: state.option,
           })
           .then((res: AxiosResponse<string[]>) => {
+            dispatch({ type: "SET_RES_TIME", time: performance.now() - startTime });
             dispatch({ type: "SET_GEN_TEXT", texts: res.data });
           });
       }

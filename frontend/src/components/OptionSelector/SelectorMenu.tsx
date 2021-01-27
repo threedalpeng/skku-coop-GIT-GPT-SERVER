@@ -54,16 +54,14 @@ const Selector = styled.div`
     left: 0px;
     top: 7px;
 
+    /*
     background: linear-gradient(
       180deg,
       #ffa2a2 100%,
       rgba(255, 189, 189, 0.66) 100%
     );
-    background: linear-gradient(
-      180deg,
-      #dffffd 0%,
-      rgb(220, 238, 255) 100%
-    );
+    */
+    background: linear-gradient(180deg, #dffffd 0%, rgb(220, 238, 255) 100%);
 
     border-radius: 10px 0px 0px 10px;
     border-right-color: #55271d;

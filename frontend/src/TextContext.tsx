@@ -9,6 +9,7 @@ type State = {
     rcmd_num: string;
     temperature: string;
   };
+  response_time: number;
 };
 
 type Action =
@@ -18,7 +19,8 @@ type Action =
   | { type: "SET_MODEL"; model: string }
   | { type: "SET_RCMD_TYPE"; rcmd_type: string }
   | { type: "SET_RCMD_NUM"; rcmd_num: string }
-  | { type: "SET_TEMPERATURE"; temperature: string };
+  | { type: "SET_TEMPERATURE"; temperature: string }
+  | { type: "SET_RES_TIME"; time: number };
 
 type TextDispatch = Dispatch<Action>;
 
@@ -73,7 +75,12 @@ function reducer(state: State, action: Action): State {
           ...state.option,
           temperature: action.temperature,
         },
-      };      
+      };
+    case "SET_RES_TIME":
+      return {
+        ...state,
+        response_time: action.time,
+      };
     default:
       throw new Error("Unhandled action");
   }
@@ -89,6 +96,7 @@ export function TextProvider({ children }: { children: React.ReactNode }) {
       rcmd_num: "3",
       temperature: "1.0",
     },
+    response_time: 0.0,
   });
 
   return (
