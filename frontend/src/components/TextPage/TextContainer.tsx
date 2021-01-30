@@ -2,6 +2,7 @@ import React from "react";
 import TextBlock from "./TextBlock";
 import { useTextState } from "../../TextContext";
 import styled from "styled-components";
+import TextBubble from "../../images/TextBubbleWhite.svg";
 
 const TextGroup = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ const TextGroup = styled.div`
   width: 45%;
   height: fit-content;
   max-height: 100%;
-  min-height: 30%;
+  min-height: 100%;
 
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
@@ -35,7 +36,7 @@ const TextGroup = styled.div`
 
     overflow: auto;
     max-height: 90%;
-    width: 100%
+    width: 100%;
   }
 `;
 
@@ -44,11 +45,18 @@ function TextContainer() {
 
   return (
     <TextGroup>
-      <div className="scrollable">
-        {state.generated_texts.map((text, index) => (
-          <TextBlock key={index} text={text} />
-        ))}
-      </div>
+      {state.generated_texts.length ? (
+        <div className="scrollable">
+          {state.generated_texts.map((text, index) => (
+            <TextBlock key={index} text={text} />
+          ))}
+        </div>
+      ) : (
+        <div>
+          <img src={TextBubble} height="64px" width="64px" alt="=" />
+          <h2 style={{ color: "white" }}>리뷰를 생성해주세요!</h2>
+        </div>
+      )}
     </TextGroup>
   );
 }
