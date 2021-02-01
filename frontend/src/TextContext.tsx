@@ -1,15 +1,16 @@
 import React, { useReducer, useContext, createContext, Dispatch } from "react";
+import config from "./config/config";
 
 type State = {
-  source_text: string;
-  generated_texts: string[];
+  sourceText: string;
+  generatedTexts: string[];
   option: {
     model: string;
-    rcmd_type: string;
-    rcmd_num: string;
+    rcmdType: string;
+    rcmdNum: number;
     temperature: string;
   };
-  response_time: number;
+  responseTime: number;
 };
 
 type Action =
@@ -17,8 +18,8 @@ type Action =
   | { type: "SET_GEN_TEXT"; texts: string[] }
   | { type: "CONCAT_TO_SRC_TEXT"; text: string }
   | { type: "SET_MODEL"; model: string }
-  | { type: "SET_RCMD_TYPE"; rcmd_type: string }
-  | { type: "SET_RCMD_NUM"; rcmd_num: string }
+  | { type: "SET_RCMD_TYPE"; rcmdType: string }
+  | { type: "SET_RCMD_NUM"; rcmdNum: number }
   | { type: "SET_TEMPERATURE"; temperature: string }
   | { type: "SET_RES_TIME"; time: number };
 
@@ -32,17 +33,17 @@ function reducer(state: State, action: Action): State {
     case "SET_SRC_TEXT":
       return {
         ...state,
-        source_text: action.text,
+        sourceText: action.text,
       };
     case "SET_GEN_TEXT":
       return {
         ...state,
-        generated_texts: action.texts,
+        generatedTexts: action.texts,
       };
     case "CONCAT_TO_SRC_TEXT":
       return {
         ...state,
-        source_text: state.source_text.concat(action.text),
+        sourceText: state.sourceText.concat(action.text),
       };
     case "SET_MODEL":
       return {
@@ -57,7 +58,7 @@ function reducer(state: State, action: Action): State {
         ...state,
         option: {
           ...state.option,
-          rcmd_type: action.rcmd_type,
+          rcmdType: action.rcmdType,
         },
       };
     case "SET_RCMD_NUM":
@@ -65,7 +66,7 @@ function reducer(state: State, action: Action): State {
         ...state,
         option: {
           ...state.option,
-          rcmd_num: action.rcmd_num,
+          rcmdNum: action.rcmdNum,
         },
       };
     case "SET_TEMPERATURE":
@@ -79,7 +80,7 @@ function reducer(state: State, action: Action): State {
     case "SET_RES_TIME":
       return {
         ...state,
-        response_time: action.time,
+        responseTime: action.time,
       };
     default:
       throw new Error("Unhandled action");
@@ -88,15 +89,10 @@ function reducer(state: State, action: Action): State {
 
 export function TextProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, {
-    source_text: "",
-    generated_texts: [],
-    option: {
-      model: "cream-100x100",
-      rcmd_type: "word",
-      rcmd_num: "3",
-      temperature: "1.0",
-    },
-    response_time: 0.0,
+    sourceText: "",
+    generatedTexts: [],
+    option: config.defaultOption,
+    responseTime: 0.0,
   });
 
   return (

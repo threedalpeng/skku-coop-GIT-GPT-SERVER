@@ -125,7 +125,7 @@ function TextForm() {
     let startTime = performance.now();
     axios
       .post(config.path.server + "/api/gen", {
-        seedText: state.source_text,
+        seedText: state.sourceText,
         option: state.option,
       })
       .then((res: AxiosResponse<string[]>) => {
@@ -140,7 +140,7 @@ function TextForm() {
         <label className="form-title">리뷰 작성</label>
         <div className="form-divider"></div>
         <InputForm
-          value={state.source_text}
+          value={state.sourceText}
           placeholder="시작 문구를 입력해주세요"
           onChange={onUpdate}
         />
@@ -155,7 +155,7 @@ function TextForm() {
         </label>
         */}
         <label style={{ color: "white", marginBottom: "0.5em" }}>
-          {(state.response_time / 1000).toPrecision(3) + " s"}
+          {(state.responseTime / 1000).toPrecision(3) + " s"}
         </label>
         <div style={{ display: "inline-block", width: "100%" }}>
           <FormButton onClick={onSubmit} style={{ float: "left" }}>

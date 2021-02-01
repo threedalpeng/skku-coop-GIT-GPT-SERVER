@@ -57,7 +57,7 @@ function TextPage() {
         let startTime = performance.now();
         axios
           .post(config.path.server + "/api/gen", {
-            seedText: state.source_text,
+            seedText: state.sourceText,
             option: state.option,
           })
           .then((res: AxiosResponse<string[]>) => {

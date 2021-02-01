@@ -45,9 +45,9 @@ function TextContainer() {
 
   return (
     <TextGroup>
-      {state.generated_texts.length ? (
+      {state.generatedTexts.length ? (
         <div className="scrollable">
-          {state.generated_texts.map((text, index) => (
+          {state.generatedTexts.map((text, index) => (
             <TextBlock key={index} text={text} />
           ))}
         </div>

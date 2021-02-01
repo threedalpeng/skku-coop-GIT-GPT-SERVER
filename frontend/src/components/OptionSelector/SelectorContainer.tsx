@@ -4,6 +4,8 @@ import config from "../../config/config";
 import SelectorMenu from "./SelectorMenu";
 
 const SelectorContainerDiv = styled.div`
+  font-size: 18px;
+
   display: inline-flex;
   float: right;
   flex-direction: row;
@@ -20,12 +22,16 @@ const SelectorContainerDiv = styled.div`
 function SelectorContainer() {
   return (
     <SelectorContainerDiv>
-      {config.generator_option.map((option, index) => (
+      {config.generatorOption.map((option, index) => (
         <SelectorMenu
           key={index}
-          name={option.label_name}
-          value={option.label_value}
-          options={option.options}
+          name={option.labelName}
+          value={option.labelValue}
+          defaultValue={option.defaultValue}
+          formType={option.formType}
+          options={option.options ? option.options : null}
+          maxValue={option.maxValue ? option.maxValue : null}
+          minValue={option.minValue ? option.minValue : null}
         />
       ))}
     </SelectorContainerDiv>

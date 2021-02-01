@@ -2,88 +2,64 @@ const config = {
   path: {
     server: "http://115.145.212.100:53344",
   },
-  generator_option: [
+  generatorOption: [
     {
-      label_name: "카테고리",
-      label_value: "model",
+      formType: "select",
+      labelName: "카테고리",
+      labelValue: "model",
+      defaultValue: "cleansingfoam",
       options: [
         {
-          option_name: "크림",
-          option_value: "cream-100x100",
+          optionName: "크림",
+          optionValue: "cream",
         },
         {
-          option_name: "클랜징폼",
-          option_value: "oliveyoung-foam",
+          optionName: "클랜징폼",
+          optionValue: "cleansingfoam",
         },
       ],
     },
     {
-      label_name: "추천 방식",
-      label_value: "rcmd-type",
+      formType: "select",
+      labelName: "추천 방식",
+      labelValue: "rcmd-type",
+      defaultValue: "sentence",
       options: [
         {
-          option_name: "단어 추천",
-          option_value: "word",
+          optionName: "단어 추천",
+          optionValue: "word",
         },
         {
-          option_name: "문장 추천",
-          option_value: "sentence",
+          optionName: "문장 추천",
+          optionValue: "sentence",
         },
         {
-          option_name: "전체 추천",
-          option_value: "review",
+          optionName: "전체 추천",
+          optionValue: "review",
         },
       ],
     },
     {
-      label_name: "추천 개수",
-      label_value: "rcmd-number",
-      options: [
-        {
-          option_name: "3개",
-          option_value: "3",
-        },
-        {
-          option_name: "4개",
-          option_value: "4",
-        },
-        {
-          option_name: "5개",
-          option_value: "5",
-        },
-        {
-          option_name: "6개",
-          option_value: "6",
-        },
-      ],
+      formType: "number",
+      labelName: "추천 개수",
+      labelValue: "rcmd-number",
+      defaultValue: 5,
+      minValue: 1,
+      maxValue: 9,
     },
     {
-      label_name: "Temperature",
-      label_value: "temperature",
-      options: [
-        {
-          option_name: "1.0",
-          option_value: "1.0",
-        },
-        {
-          option_name: "2.0",
-          option_value: "2.0",
-        },
-        {
-          option_name: "3.0",
-          option_value: "3.0",
-        },
-        {
-          option_name: "4.0",
-          option_value: "4.0",
-        },
-        {
-          option_name: "5.0",
-          option_value: "5.0",
-        },
-      ],
+      formType: "text",
+      labelName: "Temperature",
+      labelValue: "temperature",
+      defaultValue: "3.0"
     },
   ],
+  defaultOption: {
+    model: "cleansingfoam",
+    rcmdType: "sentence",
+    rcmdNum: 5,
+    temperature: "3.0"
+  }
 };
 
 export default config;

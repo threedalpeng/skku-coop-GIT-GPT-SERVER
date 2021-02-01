@@ -3,19 +3,22 @@ import styled from "styled-components";
 import { useTextDispatch } from "../../TextContext";
 
 type OptionType = {
-  option_name: string;
-  option_value: string;
+  optionName: string;
+  optionValue: string;
 };
 
 type SelectorType = {
+  formType: string;
   name: string;
   value: string;
-  options: OptionType[];
+  defaultValue: string | number;
+  options: OptionType[] | null;
+  maxValue: number | null;
+  minValue: number | null;
 };
 
 const Selector = styled.div`
   font-family: "Nanum Gothic";
-  font-size: 15px;
 
   display: flex;
   flex-direction: row;
@@ -79,7 +82,7 @@ const Selector = styled.div`
   .selector-text {
     position: static;
     width: 100%;
-    height: 15px;
+    height: 1em;
     left: 22px;
     top: 10px;
 
@@ -102,8 +105,10 @@ const Selector = styled.div`
   }
 
   .selector-menu {
+    font-size: 18px;
+
     position: static;
-    width: 5rem;
+    width: fit-content;
     left: 95px;
     top: 7px;
 
@@ -115,6 +120,28 @@ const Selector = styled.div`
     align-self: stretch;
     flex-grow: 0;
     margin: 0px 0px;
+    padding: 0px 2px;
+
+    display: flex;
+  }
+
+  .text-input {
+    font-size: 18px;
+
+    position: static;
+    width: 3em;
+    left: 95px;
+    top: 7px;
+
+    border-radius: 0px 10px 10px 0px;
+    border-width: 0px;
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0px 0px;
+    padding: 0px 2px;
 
     display: flex;
   }
@@ -123,18 +150,68 @@ const Selector = styled.div`
 function SelectorMenu(props: SelectorType) {
   const dispatch = useTextDispatch();
 
-  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const switchFormType = (props: SelectorType) => {
+    switch (props.formType) {
+      case "select":
+        return (
+          <select
+            className="selector-menu"
+            name={props.value}
+            onChange={onSelectChange}
+            defaultValue={props.defaultValue}
+          >
+            {(props.options ? props.options : []).map((option, index) => (
+              <option key={index} value={option.optionValue}>
+                {option.optionName}
+              </option>
+            ))}
+          </select>
+        );
+      case "number":
+        return (
+          <input
+            className="selector-menu"
+            type="number"
+            defaultValue={props.defaultValue}
+            name={props.value}
+            onChange={onInputChange}
+            max={props.maxValue ? props.maxValue : 100}
+            min={props.minValue ? props.minValue : 0}
+          />
+        );
+      case "text":
+        return (
+          <input
+            className="text-input"
+            type="text"
+            defaultValue={props.defaultValue}
+            name={props.value}
+            onChange={onInputChange}
+          />
+        );
+
+      default:
+        break;
+    }
+  };
+
+  const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     switch (props.value) {
       case "model":
         return dispatch({ type: "SET_MODEL", model: e.target.value });
       case "rcmd-type":
-        return dispatch({ type: "SET_RCMD_TYPE", rcmd_type: e.target.value });
+        return dispatch({ type: "SET_RCMD_TYPE", rcmdType: e.target.value });
+    }
+  };
+
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    switch (props.value) {
       case "rcmd-number":
-        return dispatch({ type: "SET_RCMD_NUM", rcmd_num: e.target.value });
+        return dispatch({ type: "SET_RCMD_NUM", rcmdNum: +e.target.value });
       case "temperature":
         return dispatch({
           type: "SET_TEMPERATURE",
-          temperature: e.target.value,
+          temperature: (+e.target.value).toFixed(2),
         });
     }
   };
@@ -144,13 +221,7 @@ function SelectorMenu(props: SelectorType) {
       <label className="selector-label">
         <p className="selector-text">{props.name}</p>
       </label>
-      <select className="selector-menu" name={props.value} onChange={onChange}>
-        {props.options.map((option, index) => (
-          <option key={index} value={option.option_value}>
-            {option.option_name}
-          </option>
-        ))}
-      </select>
+      {switchFormType(props)}
     </Selector>
   );
 }
