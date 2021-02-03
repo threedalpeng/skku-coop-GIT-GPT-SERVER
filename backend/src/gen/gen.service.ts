@@ -14,8 +14,9 @@ export class GenService {
       config.path.engineServerPath + '/api/gen',
       srcData,
     );
-    if (res.data.generated_texts) {
-      return res.data.generated_texts;
+    console.log(res.data);
+    if (res.data.generatedTexts) {
+      return res.data.generatedTexts;
     } else {
       return [];
     }

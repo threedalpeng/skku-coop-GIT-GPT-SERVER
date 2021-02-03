@@ -2,14 +2,14 @@ type GenType = {
   seedText: string;
   option: {
     model: string;
-    rcmd_type: string;
-    rcmd_num: string;
+    rcmdType: string;
+    rcmdNum: string;
     temperature: string;
   };
 };
 
 type GenTexts = {
-  generated_texts: string[];
+  generatedTexts: string[];
 };
 
 export { GenType, GenTexts };
