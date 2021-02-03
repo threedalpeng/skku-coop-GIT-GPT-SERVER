@@ -11,7 +11,7 @@ const TextGroup = styled.div`
   align-items: center;
 
   position: static;
-  width: 45%;
+  width: 42.5%;
   height: fit-content;
   max-height: 100%;
   min-height: 100%;
@@ -20,12 +20,9 @@ const TextGroup = styled.div`
 
   /*background: #ffe7e7;*/
   background: linear-gradient(180deg, #053246 0%, #000825 100%);
-  border: 1px solid #ffffff;
+  /*border: 1px solid #ffffff;*/
   box-sizing: border-box;
-  border-radius: 13px;
-
-  flex: none;
-  order: 1;
+  border-radius: 20px;
 
   .scrollable {
     display: flex;

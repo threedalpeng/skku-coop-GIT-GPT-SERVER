@@ -12,7 +12,6 @@ const OptionPage = styled.div`
   height: 8vh;
 
   flex: none;
-  order: 1;
   align-self: stretch;
   flex-grow: 0;
   margin: 0px 0px;
