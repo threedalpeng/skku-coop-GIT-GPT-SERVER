@@ -3,14 +3,14 @@ import { useTextDispatch, useTextState } from "../../TextContext";
 import styled from "styled-components";
 import axios, { AxiosResponse } from "axios";
 import config from "../../config/config";
+import KeywordBlocks from "./KeywordBlocks";
 
 const FormGroup = styled.div`
   position: static;
-  width: 45%;
+  width: 52.5%;
   height: 100%;
 
   flex: none;
-  order: 0;
   flex-grow: 0;
 
   /*background: #fff5f5;*/
@@ -34,6 +34,22 @@ const FormGroup = styled.div`
     text-align: left;
   }
 
+  div.input-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    padding: 2px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    flex-grow: 1;
+  }
+
   .form-title {
     position: static;
     width: 100%;
@@ -48,15 +64,27 @@ const FormGroup = styled.div`
     color: #eeeeff;
 
     flex: none;
-    order: 0;
     flex-grow: 0;
     margin-bottom: 1em;
   }
 
-  .form-divider {
-    position: static;
+  .form-divider-horizontal {
     width: 100%;
     height: 2px;
+
+    background: #949494;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    align-self: stretch;
+    flex-grow: 0;
+  }
+
+  .form-divider-vertical {
+    width: 1px;
+    height: 100%;
+    margin: 0px 5px;
 
     background: #949494;
 
@@ -69,13 +97,9 @@ const FormGroup = styled.div`
 `;
 
 const InputForm = styled.textarea`
-  position: static;
-
-  width: 100%;
   flex: none;
   align-self: stretch;
   flex-grow: 1;
-  margin-top: 1em;
 
   border-width: 0px;
 
@@ -91,7 +115,6 @@ const InputForm = styled.textarea`
 
   resize: none;
 
-  margin-bottom: 0.5em;
 `;
 
 const FormButton = styled.button`
@@ -138,12 +161,16 @@ function TextForm() {
     <FormGroup>
       <form className="form-wrapper">
         <label className="form-title">리뷰 작성</label>
-        <div className="form-divider"></div>
-        <InputForm
-          value={state.sourceText}
-          placeholder="시작 문구를 입력해주세요"
-          onChange={onUpdate}
-        />
+        <div className="form-divider-horizontal" />
+        <div className="input-wrapper">
+          <InputForm
+            value={state.sourceText}
+            placeholder="시작 문구를 입력해주세요"
+            onChange={onUpdate}
+          />
+          <div className="form-divider-vertical" />
+          <KeywordBlocks />
+        </div>
         {/*
         <label
           className="form-title"

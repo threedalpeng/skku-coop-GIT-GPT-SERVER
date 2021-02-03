@@ -11,6 +11,7 @@ type State = {
     temperature: string;
   };
   responseTime: number;
+  keywords: string[];
 };
 
 type Action =
@@ -21,7 +22,8 @@ type Action =
   | { type: "SET_RCMD_TYPE"; rcmdType: string }
   | { type: "SET_RCMD_NUM"; rcmdNum: number }
   | { type: "SET_TEMPERATURE"; temperature: string }
-  | { type: "SET_RES_TIME"; time: number };
+  | { type: "SET_RES_TIME"; time: number }
+  | { type: "SET_KEYWORDS"; keywords: string[] };
 
 type TextDispatch = Dispatch<Action>;
 
@@ -82,6 +84,11 @@ function reducer(state: State, action: Action): State {
         ...state,
         responseTime: action.time,
       };
+    case "SET_KEYWORDS":
+      return {
+        ...state,
+        keywords: action.keywords,
+      };
     default:
       throw new Error("Unhandled action");
   }
@@ -93,6 +100,7 @@ export function TextProvider({ children }: { children: React.ReactNode }) {
     generatedTexts: [],
     option: config.defaultOption,
     responseTime: 0.0,
+    keywords: ["세정력", "당김"],
   });
 
   return (

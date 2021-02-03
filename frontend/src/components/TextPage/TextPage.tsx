@@ -19,7 +19,6 @@ const TextPageDiv = styled.div`
   top: 293px;
 
   flex: none;
-  order: 2;
   flex-grow: 0;
   margin: 0px 0px;
 
@@ -35,13 +34,12 @@ const TextPageDiv = styled.div`
     padding: 0px 20px;
 
     position: static;
-    width: 80vw;
+    width: 90%;
     height: 90%;
     left: 10%;
     top: 5vw;
 
     flex: none;
-    order: 0;
     flex-grow: 0;
     margin: 0px 10px;
   }

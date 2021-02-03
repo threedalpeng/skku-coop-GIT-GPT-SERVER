@@ -177,6 +177,7 @@ function SelectorMenu(props: SelectorType) {
             onChange={onInputChange}
             max={props.maxValue ? props.maxValue : 100}
             min={props.minValue ? props.minValue : 0}
+            inputMode="numeric"
           />
         );
       case "text":
@@ -187,6 +188,7 @@ function SelectorMenu(props: SelectorType) {
             defaultValue={props.defaultValue}
             name={props.value}
             onChange={onInputChange}
+            inputMode="decimal"
           />
         );
 
