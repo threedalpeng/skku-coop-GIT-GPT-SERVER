@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTextDispatch, useTextState } from "../../TextContext";
 import styled from "styled-components";
 import axios, { AxiosResponse } from "axios";
@@ -114,7 +114,6 @@ const InputForm = styled.textarea`
   color: #000000;
 
   resize: none;
-
 `;
 
 const FormButton = styled.button`
@@ -132,6 +131,26 @@ const FormButton = styled.button`
 function TextForm() {
   const state = useTextState();
   const dispatch = useTextDispatch();
+
+  useEffect(() => {
+    const timeOutId = setTimeout(
+      () => checkAndSetKeywordState(state.sourceText),
+      500
+    );
+    return () => clearTimeout(timeOutId);
+  }, [state.sourceText]);
+
+  const checkAndSetKeywordState = (sourceText: string) => {
+    const newKeywords = state.keywords.slice();
+    for (let i = 0; i < state.keywords.length; i++){
+      if (state.keywords[i].state !== 'activated') {
+        if (sourceText.includes(state.keywords[i].text))
+          newKeywords[i].state = "used";
+        else newKeywords[i].state = "recommended";
+      }
+    }
+    dispatch({ type: "SET_KEYWORDS", keywords: newKeywords });
+  };
 
   const onUpdate = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch({ type: "SET_SRC_TEXT", text: e.target.value });

@@ -1,7 +1,14 @@
 import React, { useReducer, useContext, createContext, Dispatch } from "react";
 import config from "./config/config";
 
-type State = {
+type KeywordState = "recommended" | "used" | "activated";
+
+type KeywordType = {
+  text: string;
+  state: KeywordState;
+}
+
+type TextState = {
   sourceText: string;
   generatedTexts: string[];
   option: {
@@ -11,7 +18,7 @@ type State = {
     temperature: string;
   };
   responseTime: number;
-  keywords: string[];
+  keywords: KeywordType[];
 };
 
 type Action =
@@ -23,14 +30,14 @@ type Action =
   | { type: "SET_RCMD_NUM"; rcmdNum: number }
   | { type: "SET_TEMPERATURE"; temperature: string }
   | { type: "SET_RES_TIME"; time: number }
-  | { type: "SET_KEYWORDS"; keywords: string[] };
+  | { type: "SET_KEYWORDS"; keywords: KeywordType[] };
 
 type TextDispatch = Dispatch<Action>;
 
-const TextStateContext = createContext<State | null>(null);
+const TextStateContext = createContext<TextState | null>(null);
 const TextDispatchContext = createContext<TextDispatch | null>(null);
 
-function reducer(state: State, action: Action): State {
+function reducer(state: TextState, action: Action): TextState {
   switch (action.type) {
     case "SET_SRC_TEXT":
       return {
@@ -100,7 +107,10 @@ export function TextProvider({ children }: { children: React.ReactNode }) {
     generatedTexts: [],
     option: config.defaultOption,
     responseTime: 0.0,
-    keywords: ["세정력", "당김"],
+    keywords: [
+      { text: "세정력", state: "recommended" },
+      { text: "당김", state: "recommended" },
+    ],
   });
 
   return (
