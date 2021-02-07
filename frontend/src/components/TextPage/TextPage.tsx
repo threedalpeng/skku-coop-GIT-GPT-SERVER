@@ -57,9 +57,15 @@ function TextPage() {
           .post(config.path.server + "/api/gen", {
             seedText: state.sourceText,
             option: state.option,
+            keywords: state.keywords
+              .filter((keyword) => keyword.state === "activated")
+              .map((keyword) => keyword.text),
           })
           .then((res: AxiosResponse<string[]>) => {
-            dispatch({ type: "SET_RES_TIME", time: performance.now() - startTime });
+            dispatch({
+              type: "SET_RES_TIME",
+              time: performance.now() - startTime,
+            });
             dispatch({ type: "SET_GEN_TEXT", texts: res.data });
           });
       }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useTextDispatch, useTextState } from "../../TextContext";
 import styled from "styled-components";
 import axios, { AxiosResponse } from "axios";
@@ -132,28 +132,33 @@ function TextForm() {
   const state = useTextState();
   const dispatch = useTextDispatch();
 
-  useEffect(() => {
-    const timeOutId = setTimeout(
-      () => checkAndSetKeywordState(state.sourceText),
-      500
-    );
-    return () => clearTimeout(timeOutId);
-  }, [state.sourceText]);
+  function debounce(callback: Function, wait: number) {
+    let timeoutId: NodeJS.Timeout;
+    return (...args: any) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        callback(...args);
+      }, wait);
+      console.log(timeoutId);
+    };
+  }
 
-  const checkAndSetKeywordState = (sourceText: string) => {
+  const checkKeywords = () => {
     const newKeywords = state.keywords.slice();
-    for (let i = 0; i < state.keywords.length; i++){
-      if (state.keywords[i].state !== 'activated') {
-        if (sourceText.includes(state.keywords[i].text))
+    for (let i = 0; i < state.keywords.length; i++) {
+      if (state.keywords[i].state !== "activated") {
+        if (state.sourceText.includes(state.keywords[i].text))
           newKeywords[i].state = "used";
         else newKeywords[i].state = "recommended";
       }
     }
+    console.log(newKeywords);
     dispatch({ type: "SET_KEYWORDS", keywords: newKeywords });
   };
 
   const onUpdate = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch({ type: "SET_SRC_TEXT", text: e.target.value });
+    debounce(checkKeywords, 1000)();
   };
 
   const onReset = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -169,6 +174,9 @@ function TextForm() {
       .post(config.path.server + "/api/gen", {
         seedText: state.sourceText,
         option: state.option,
+        keywords: state.keywords
+          .filter((keyword) => keyword.state === "activated")
+          .map((keyword) => keyword.text),
       })
       .then((res: AxiosResponse<string[]>) => {
         dispatch({ type: "SET_RES_TIME", time: performance.now() - startTime });

@@ -6,6 +6,7 @@ type GenType = {
     rcmdNum: string;
     temperature: string;
   };
+  keywords: string[];
 };
 
 type GenTexts = {

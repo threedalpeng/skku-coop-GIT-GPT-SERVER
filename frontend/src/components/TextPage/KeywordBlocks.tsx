@@ -126,6 +126,19 @@ function KeywordBlocks() {
 
   const onInputFocusOut = (e: React.FocusEvent<HTMLInputElement>) => {
     e.preventDefault();
+    const keywordToAdd = e.currentTarget.value.trim();
+    if (
+      keywordToAdd.length >= 1 &&
+      !state.keywords.find((keyword) => keyword.text === keywordToAdd)
+    ) {
+      dispatch({
+        type: "SET_KEYWORDS",
+        keywords: state.keywords.concat({
+          text: keywordToAdd,
+          state: "recommended",
+        }),
+      });
+    }
     setAddMode(false);
   };
 
@@ -153,6 +166,7 @@ function KeywordBlocks() {
   };
   return (
     <KeywordContainer>
+      <p style={{color: "white", marginTop: "0px", width: "100%", textAlign:"center"}}>키워드</p>
       {state.keywords.map((keyword, index) => (
         <button
           className={"keyword " + keyword.state}
