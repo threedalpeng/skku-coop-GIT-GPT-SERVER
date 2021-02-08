@@ -5,7 +5,11 @@
   align-items: flex-start;
   padding: 0px;
   /*background: linear-gradient(128.6deg, #ffe2e2 6.37%, #ffc2c2 92.97%);*/
-  background: linear-gradient(180deg, rgb(255, 255, 255) 100%, rgb(57, 149, 255) 0%);
+  background: linear-gradient(
+    180deg,
+    rgb(255, 255, 255) 100%,
+    rgb(57, 149, 255) 0%
+  );
 
   position: relative;
   width: 100%;

@@ -1,8 +1,9 @@
 import React from "react";
-import TextBlock from "./TextBlock";
 import { useTextState } from "../../TextContext";
 import styled from "styled-components";
 import TextBubble from "../../images/TextBubbleWhite.svg";
+import TextGenContainer from "./TextGenContainer";
+import TextExampleContainer from "./TextExampleContainer";
 
 const TextGroup = styled.div`
   display: flex;
@@ -10,11 +11,8 @@ const TextGroup = styled.div`
   justify-content: center;
   align-items: center;
 
-  position: static;
   width: 42.5%;
-  height: fit-content;
-  max-height: 100%;
-  min-height: 100%;
+  height: 100%;
 
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
@@ -24,29 +22,33 @@ const TextGroup = styled.div`
   box-sizing: border-box;
   border-radius: 20px;
 
-  .scrollable {
+  .inner-container {
     display: flex;
     flex-direction: column;
-    justify-content: safe;
     align-items: center;
-    padding: 10px 0px;
+    width: 90%;
+    height: 90%;
+  }
 
-    overflow: auto;
-    max-height: 90%;
+  .container-divider-horizontal {
+    justify-self: flex-end;
     width: 100%;
+    height: 2px;
+
+    background: #949494;
   }
 `;
 
-function TextContainer() {
+function TextOutContainer() {
   const state = useTextState();
 
   return (
     <TextGroup>
-      {state.generatedTexts.length ? (
-        <div className="scrollable">
-          {state.generatedTexts.map((text, index) => (
-            <TextBlock key={index} text={text} />
-          ))}
+      {state.generatedTexts.length && state.exampleText.length ? (
+        <div className="inner-container">
+          <TextGenContainer />
+          <div className="container-divider-horizontal" />
+          <TextExampleContainer />
         </div>
       ) : (
         <div>
@@ -58,4 +60,4 @@ function TextContainer() {
   );
 }
 
-export default TextContainer;
+export default TextOutContainer;

@@ -6,11 +6,12 @@ type KeywordState = "recommended" | "used" | "activated";
 type KeywordType = {
   text: string;
   state: KeywordState;
-}
+};
 
 type TextState = {
   sourceText: string;
   generatedTexts: string[];
+  exampleText: string;
   option: {
     model: string;
     rcmdType: string;
@@ -30,7 +31,8 @@ type Action =
   | { type: "SET_RCMD_NUM"; rcmdNum: number }
   | { type: "SET_TEMPERATURE"; temperature: string }
   | { type: "SET_RES_TIME"; time: number }
-  | { type: "SET_KEYWORDS"; keywords: KeywordType[] };
+  | { type: "SET_KEYWORDS"; keywords: KeywordType[] }
+  | { type: "SET_EXAMPLE"; text: string };
 
 type TextDispatch = Dispatch<Action>;
 
@@ -96,6 +98,11 @@ function reducer(state: TextState, action: Action): TextState {
         ...state,
         keywords: action.keywords,
       };
+    case "SET_EXAMPLE":
+      return {
+        ...state,
+        exampleText: action.text,
+      };
     default:
       throw new Error("Unhandled action");
   }
@@ -105,6 +112,7 @@ export function TextProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, {
     sourceText: "",
     generatedTexts: [],
+    exampleText: "",
     option: config.defaultOption,
     responseTime: 0.0,
     keywords: [

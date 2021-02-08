@@ -16,10 +16,10 @@ const KeywordContainer = styled.div`
   flex: none;
   flex-grow: 0;
 
-  button.keyword {
+  .keyword {
     font-size: 16px;
-    width: 100%;
-    height: 3em;
+    width: calc(100% - 4px);
+    height: calc(3em - 4px);
     margin-bottom: 0.5em;
     border-radius: 10px;
 
@@ -28,6 +28,8 @@ const KeywordContainer = styled.div`
     justify-content: space-evenly;
     align-items: center;
 
+    border: 2px solid;
+
     &.recommended {
       border-color: cornflowerblue;
       background-color: #dae7ff;
@@ -35,6 +37,7 @@ const KeywordContainer = styled.div`
 
     &.used {
       border-color: red;
+      background-color: #ffdada;
     }
 
     &.activated {
@@ -90,7 +93,7 @@ function KeywordBlocks() {
   const onCloseButtonClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     e.preventDefault();
     dispatch({
       type: "SET_KEYWORDS",
@@ -142,9 +145,7 @@ function KeywordBlocks() {
     setAddMode(false);
   };
 
-  const onKeywordClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const onKeywordClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
     if (e.currentTarget.textContent) {
       const index = state.keywords.findIndex(
@@ -164,11 +165,21 @@ function KeywordBlocks() {
       });
     }
   };
+
   return (
     <KeywordContainer>
-      <p style={{color: "white", marginTop: "0px", width: "100%", textAlign:"center"}}>키워드</p>
+      <p
+        style={{
+          color: "white",
+          marginTop: "0px",
+          width: "100%",
+          textAlign: "center",
+        }}
+      >
+        키워드
+      </p>
       {state.keywords.map((keyword, index) => (
-        <button
+        <div
           className={"keyword " + keyword.state}
           key={index}
           onClick={onKeywordClick}
@@ -181,12 +192,12 @@ function KeywordBlocks() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              zIndex: 99
+              zIndex: 99,
             }}
           >
             <img src={CloseButton} height="16px" width="16px" alt="quit" />
           </button>
-        </button>
+        </div>
       ))}
       {addMode ? (
         <input

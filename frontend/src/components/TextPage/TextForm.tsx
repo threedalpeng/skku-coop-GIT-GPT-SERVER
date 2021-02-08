@@ -4,6 +4,7 @@ import styled from "styled-components";
 import axios, { AxiosResponse } from "axios";
 import config from "../../config/config";
 import KeywordBlocks from "./KeywordBlocks";
+import { useDebounce } from "../../lib/debounce";
 
 const FormGroup = styled.div`
   position: static;
@@ -132,22 +133,11 @@ function TextForm() {
   const state = useTextState();
   const dispatch = useTextDispatch();
 
-  function debounce(callback: Function, wait: number) {
-    let timeoutId: NodeJS.Timeout;
-    return (...args: any) => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        callback(...args);
-      }, wait);
-      console.log(timeoutId);
-    };
-  }
-
-  const checkKeywords = () => {
+  const checkKeywords = (sourceText: string) => {
     const newKeywords = state.keywords.slice();
     for (let i = 0; i < state.keywords.length; i++) {
       if (state.keywords[i].state !== "activated") {
-        if (state.sourceText.includes(state.keywords[i].text))
+        if (sourceText.includes(state.keywords[i].text))
           newKeywords[i].state = "used";
         else newKeywords[i].state = "recommended";
       }
@@ -156,9 +146,11 @@ function TextForm() {
     dispatch({ type: "SET_KEYWORDS", keywords: newKeywords });
   };
 
-  const onUpdate = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const debouncedCheckKeywords = useDebounce(checkKeywords, 500);
+
+  const onInputUpdate = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch({ type: "SET_SRC_TEXT", text: e.target.value });
-    debounce(checkKeywords, 1000)();
+    debouncedCheckKeywords(e.target.value);
   };
 
   const onReset = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -178,10 +170,18 @@ function TextForm() {
           .filter((keyword) => keyword.state === "activated")
           .map((keyword) => keyword.text),
       })
-      .then((res: AxiosResponse<string[]>) => {
-        dispatch({ type: "SET_RES_TIME", time: performance.now() - startTime });
-        dispatch({ type: "SET_GEN_TEXT", texts: res.data });
-      });
+      .then(
+        (
+          res: AxiosResponse<{ generatedTexts: string[]; exampleText: string }>
+        ) => {
+          dispatch({
+            type: "SET_RES_TIME",
+            time: performance.now() - startTime,
+          });
+          dispatch({ type: "SET_GEN_TEXT", texts: res.data.generatedTexts });
+          dispatch({ type: "SET_EXAMPLE", text: res.data.exampleText });
+        }
+      );
   };
 
   return (
@@ -193,7 +193,7 @@ function TextForm() {
           <InputForm
             value={state.sourceText}
             placeholder="시작 문구를 입력해주세요"
-            onChange={onUpdate}
+            onChange={onInputUpdate}
           />
           <div className="form-divider-vertical" />
           <KeywordBlocks />
@@ -214,7 +214,7 @@ function TextForm() {
         <div style={{ display: "inline-block", width: "100%" }}>
           <FormButton onClick={onSubmit} style={{ float: "left" }}>
             생성
-          </FormButton>{" "}
+          </FormButton>
           <FormButton onClick={onReset} style={{ float: "right" }}>
             리셋
           </FormButton>

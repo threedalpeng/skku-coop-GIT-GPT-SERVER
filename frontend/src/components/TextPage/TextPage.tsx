@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import config from "../../config/config";
 import { useTextDispatch, useTextState } from "../../TextContext";
-import TextContainer from "./TextContainer";
+import TextOutContainer from "./TextOutContainer";
 import TextForm from "./TextForm";
 
 const TextPageDiv = styled.div`
@@ -61,13 +61,24 @@ function TextPage() {
               .filter((keyword) => keyword.state === "activated")
               .map((keyword) => keyword.text),
           })
-          .then((res: AxiosResponse<string[]>) => {
-            dispatch({
-              type: "SET_RES_TIME",
-              time: performance.now() - startTime,
-            });
-            dispatch({ type: "SET_GEN_TEXT", texts: res.data });
-          });
+          .then(
+            (
+              res: AxiosResponse<{
+                generatedTexts: string[];
+                exampleText: string;
+              }>
+            ) => {
+              dispatch({
+                type: "SET_RES_TIME",
+                time: performance.now() - startTime,
+              });
+              dispatch({
+                type: "SET_GEN_TEXT",
+                texts: res.data.generatedTexts,
+              });
+              dispatch({ type: "SET_EXAMPLE", text: res.data.exampleText });
+            }
+          );
       }
       /*
       else if (e.shiftKey && !isNaN(+e.key)) {
@@ -87,7 +98,7 @@ function TextPage() {
     <TextPageDiv onKeyPress={onHotkeyEntered} tabIndex={0}>
       <div className="text-component-wrapper">
         <TextForm />
-        <TextContainer />
+        <TextOutContainer />
       </div>
     </TextPageDiv>
   );

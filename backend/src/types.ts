@@ -1,4 +1,4 @@
-type GenType = {
+type GenSrcType = {
   seedText: string;
   option: {
     model: string;
@@ -11,6 +11,7 @@ type GenType = {
 
 type GenTexts = {
   generatedTexts: string[];
+  exampleText: string;
 };
 
-export { GenType, GenTexts };
+export { GenSrcType, GenTexts };

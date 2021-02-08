@@ -16,13 +16,11 @@ const TextButton = styled.button`
   justify-content: center;
   padding: 0px;
 
-  position: static;
   height: fit-content;
-  width: 90%;
+  width: 100%;
   min-height: 4em;
 
   flex: none;
-  order: 0;
   flex-grow: 1;
   margin: 10px;
 
@@ -59,7 +57,7 @@ type TextBlockProps = {
   text: string;
 };
 
-function TextBlock(props: TextBlockProps) {
+function TextGenBlock(props: TextBlockProps) {
   const dispatch = useTextDispatch();
   const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (e.currentTarget.textContent)
@@ -76,4 +74,4 @@ function TextBlock(props: TextBlockProps) {
   );
 }
 
-export default TextBlock;
+export default TextGenBlock;
