@@ -1,7 +1,8 @@
 const config = {
   path: {
     scriptPath: '',
-    engineServerPath: 'http://localhost:31415',
+    genServerPath: 'http://localhost:31415',
+    sumServerPath: 'http://localhost:31416',
   },
 };
 

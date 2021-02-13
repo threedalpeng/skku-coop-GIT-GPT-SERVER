@@ -44,7 +44,7 @@ function TextOutContainer() {
 
   return (
     <TextGroup>
-      {state.generatedTexts.length && state.exampleText.length ? (
+      {state.generatedTexts.length && state.exampleText ? (
         <div className="inner-container">
           <TextGenContainer />
           <div className="container-divider-horizontal" />

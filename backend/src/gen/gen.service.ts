@@ -10,11 +10,20 @@ export class GenService {
 
   async getGeneratedText(srcData: GenSrcType): Promise<GenTexts> {
     console.log(srcData);
-    const res: AxiosResponse<GenTexts> = await axios.post(
-      config.path.engineServerPath + '/api/gen',
+    console.log(srcData.option.model);
+    const resGen: AxiosResponse<GenTexts> = await axios.post(
+      config.path.genServerPath + '/api/gen',
       srcData,
     );
-    console.log(res.data);
-    return res.data;
+    const resSum = await axios.post(
+      config.path.sumServerPath + '/api/sum',
+      srcData.option,
+    );
+    const res = {
+      ...resGen.data,
+      ...resSum.data,
+    };
+    console.log(res);
+    return res;
   }
 }

@@ -68,6 +68,7 @@ function TextPage() {
                 exampleText: string;
               }>
             ) => {
+              console.log(res.data);
               dispatch({
                 type: "SET_RES_TIME",
                 time: performance.now() - startTime,
