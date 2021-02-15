@@ -6,7 +6,7 @@ import config from "../../config/config";
 
 const FormGroup = styled.div`
   position: static;
-  width: 45%;
+  width: 47.5%;
   height: 100%;
   flex: none;
   order: 0;
@@ -106,30 +106,31 @@ function TextForm() {
   const onReset = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     dispatch({ type: "SET_SRC_TEXT", text: "" });
-    dispatch({ type: "SET_GEN_TEXT", text: "" });
+    dispatch({ type: "SET_SUM_TEXT", text: "" });
   };
 
   const onSubmit = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     e.preventDefault();
     let startTime = performance.now();
     axios
-      .post(config.path.server + "/api/sum/single", {
+      .post(config.path.server + "/api/sum/multi", {
         seedText: state.sourceText,
+        model: "cleansingfoam",
       })
       .then((res: AxiosResponse<string>) => {
         dispatch({ type: "SET_RES_TIME", time: performance.now() - startTime });
-        dispatch({ type: "SET_GEN_TEXT", text: res.data });
+        dispatch({ type: "SET_SUM_TEXT", text: res.data });
       });
   };
 
   return (
     <FormGroup>
       <form className="form-wrapper">
-        <label className="form-title">리뷰 작성</label>
+        <label className="form-title">요약</label>
         <div className="form-divider"></div>
         <InputForm
           value={state.sourceText}
-          placeholder="시작 문구를 입력해주세요"
+          placeholder="요약할 글을 입력해주세요"
           onChange={onUpdate}
         />
         {/*
@@ -147,8 +148,8 @@ function TextForm() {
         </label>
         <div style={{ display: "inline-block", width: "100%" }}>
           <FormButton onClick={onSubmit} style={{ float: "left" }}>
-            생성
-          </FormButton>{" "}
+            요약
+          </FormButton>
           <FormButton onClick={onReset} style={{ float: "right" }}>
             리셋
           </FormButton>

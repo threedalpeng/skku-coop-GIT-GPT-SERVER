@@ -15,8 +15,6 @@ const TextPageDiv = styled.div`
   position: static;
   width: 100vw;
   height: 74vh;
-  left: 0px;
-  top: 293px;
 
   flex: none;
   flex-grow: 0;
@@ -54,7 +52,7 @@ function TextPage() {
       if (e.key === "Enter") {
         let startTime = performance.now();
         axios
-          .post(config.path.server + "/api/sum/single", {
+          .post(config.path.server + "/api/sum/multi", {
             seedText: state.sourceText,
           })
           .then((res: AxiosResponse<string>) => {
@@ -63,7 +61,7 @@ function TextPage() {
               time: performance.now() - startTime,
             });
             dispatch({
-              type: "SET_GEN_TEXT",
+              type: "SET_SUM_TEXT",
               text: res.data,
             });
           });

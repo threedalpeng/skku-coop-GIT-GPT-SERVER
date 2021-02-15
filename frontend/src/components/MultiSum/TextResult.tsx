@@ -9,7 +9,7 @@ const TextGroup = styled.div`
   justify-content: center;
   align-items: center;
   position: static;
-  width: 42.5%;
+  width: 47.5%;
   height: 100%;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   /*background: #ffe7e7;*/
@@ -72,16 +72,16 @@ function TextResult() {
 
   return (
     <TextGroup>
-      {state.generatedText ? (
+      {state.summarizedText ? (
         <div className="scrollable">
           <TextBlock>
-            <p>{state.generatedText}</p>
+            <p>{state.summarizedText}</p>
           </TextBlock>
         </div>
       ) : (
         <div>
           <img src={TextBubble} height="64px" width="64px" alt="=" />
-          <h2 style={{ color: "white" }}>리뷰를 생성해주세요!</h2>
+          <h2 style={{ color: "white" }}>글을 요약해보세요!</h2>
         </div>
       )}
     </TextGroup>

@@ -2,13 +2,13 @@ import React, { useReducer, useContext, createContext, Dispatch } from "react";
 
 type TextState = {
   sourceText: string;
-  generatedText: string;
+  summarizedText: string;
   responseTime: number;
 };
 
 type Action =
   | { type: "SET_SRC_TEXT"; text: string }
-  | { type: "SET_GEN_TEXT"; text: string }
+  | { type: "SET_SUM_TEXT"; text: string }
   | { type: "SET_RES_TIME"; time: number };
 
 type TextDispatch = Dispatch<Action>;
@@ -23,10 +23,10 @@ function reducer(state: TextState, action: Action): TextState {
         ...state,
         sourceText: action.text,
       };
-    case "SET_GEN_TEXT":
+    case "SET_SUM_TEXT":
       return {
         ...state,
-        generatedText: action.text,
+        summarizedText: action.text,
       };
     case "SET_RES_TIME":
       return {
@@ -41,7 +41,7 @@ function reducer(state: TextState, action: Action): TextState {
 export function TextProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, {
     sourceText: "",
-    generatedText: " ",
+    summarizedText: "",
     responseTime: 0.0,
   });
 
