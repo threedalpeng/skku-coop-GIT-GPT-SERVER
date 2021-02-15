@@ -12,7 +12,7 @@ const TextGroup = styled.div`
 
   overflow: auto;
   max-height: 90%;
-  width: 100%;
+  width: 90%;
 `;
 
 function TextGenContainer() {

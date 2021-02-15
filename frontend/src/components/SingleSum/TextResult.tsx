@@ -81,7 +81,7 @@ function TextResult() {
       ) : (
         <div>
           <img src={TextBubble} height="64px" width="64px" alt="=" />
-          <h2 style={{ color: "white" }}>리뷰를 생성해주세요!</h2>
+          <h2 style={{ color: "white" }}>글을 요약해보세요!</h2>
         </div>
       )}
     </TextGroup>

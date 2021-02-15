@@ -9,6 +9,7 @@ import { useTextDispatch } from "./TextContext";
 const TextGroup = styled.div`
   height: 90%;
   width: 90%;
+  position: relative;
 `;
 
 const TextExampleBlock = styled.div`
@@ -18,11 +19,9 @@ const TextExampleBlock = styled.div`
   font-size: 16px;
   line-height: 24px;
   color: #000000;
-  position: relative;
 
-  height: fit-content;
   width: 100%;
-  min-height: 80%;
+  height: 80%;
   overflow: auto;
 
   flex: none;
@@ -48,8 +47,8 @@ const TextExampleBlock = styled.div`
   .floating-button {
     display: block;
     position: absolute;
-    bottom: 1em;
-    right: 2em;
+    bottom: 10%;
+    right: 5%;
     width: 16px;
     height: 16px;
     padding: 0px 0px;
@@ -66,7 +65,7 @@ function TextExampleContainer() {
 
   const onReloadClick = () => {
     axios
-      .post(config.path.server + "/api/example", {
+      .post(config.path.server + "/api/sum/example", {
         model: state.option.model,
       })
       .then((res: AxiosResponse<{ exampleText: string }>) => {

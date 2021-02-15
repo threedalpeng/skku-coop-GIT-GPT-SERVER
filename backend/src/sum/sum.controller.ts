@@ -13,6 +13,7 @@ export class SumController {
 
   @Post('example')
   getExampleText(@Body() srcData: ExampleSrcType) {
+    console.log('example');
     return this.sumService.getExampleText(srcData);
   }
 

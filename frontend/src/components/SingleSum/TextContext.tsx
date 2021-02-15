@@ -41,7 +41,7 @@ function reducer(state: TextState, action: Action): TextState {
 export function TextProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, {
     sourceText: "",
-    summarizedText: " ",
+    summarizedText: "",
     responseTime: 0.0,
   });
 

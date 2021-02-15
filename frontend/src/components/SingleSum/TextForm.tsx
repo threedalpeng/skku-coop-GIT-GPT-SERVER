@@ -113,7 +113,7 @@ function TextForm() {
     e.preventDefault();
     let startTime = performance.now();
     axios
-      .post(config.path.server + "/api/single-sum", {
+      .post(config.path.server + "/api/sum/single", {
         seedText: state.sourceText,
       })
       .then((res: AxiosResponse<string>) => {
