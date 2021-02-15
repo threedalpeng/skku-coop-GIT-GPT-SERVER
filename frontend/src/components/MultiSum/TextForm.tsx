@@ -117,9 +117,9 @@ function TextForm() {
         seedText: state.sourceText,
         model: "cleansingfoam",
       })
-      .then((res: AxiosResponse<string>) => {
+      .then((res: AxiosResponse<{ summarizedText: string }>) => {
         dispatch({ type: "SET_RES_TIME", time: performance.now() - startTime });
-        dispatch({ type: "SET_SUM_TEXT", text: res.data });
+        dispatch({ type: "SET_SUM_TEXT", text: res.data.summarizedText });
       });
   };
 

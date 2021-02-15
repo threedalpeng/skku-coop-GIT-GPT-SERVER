@@ -55,14 +55,14 @@ function TextPage() {
           .post(config.path.server + "/api/sum/single", {
             seedText: state.sourceText,
           })
-          .then((res: AxiosResponse<string>) => {
+          .then((res: AxiosResponse<{ summarizedText: string }>) => {
             dispatch({
               type: "SET_RES_TIME",
               time: performance.now() - startTime,
             });
             dispatch({
               type: "SET_SUM_TEXT",
-              text: res.data,
+              text: res.data.summarizedText,
             });
           });
       }
