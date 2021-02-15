@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import config from "../../config/config";
+import config from "../../../config/config";
 import SelectorMenu from "./SelectorMenu";
 
 const SelectorContainerDiv = styled.div`
@@ -22,7 +22,7 @@ const SelectorContainerDiv = styled.div`
 function SelectorContainer() {
   return (
     <SelectorContainerDiv>
-      {config.generatorOption.map((option, index) => (
+      {config.review.generatorOption.map((option, index) => (
         <SelectorMenu
           key={index}
           name={option.labelName}

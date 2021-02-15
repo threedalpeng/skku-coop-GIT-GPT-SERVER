@@ -1,9 +1,19 @@
 import React from "react";
-import { useTextState } from "../../TextContext";
+import { useTextState } from "./TextContext";
 import styled from "styled-components";
 import TextBubble from "../../images/TextBubbleWhite.svg";
 import TextGenContainer from "./TextGenContainer";
 import TextExampleContainer from "./TextExampleContainer";
+
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 42.5%;
+  height: 100%;
+`;
 
 const TextGroup = styled.div`
   display: flex;
@@ -11,8 +21,7 @@ const TextGroup = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 42.5%;
-  height: 100%;
+  width: 100%;
 
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
@@ -43,20 +52,29 @@ function TextOutContainer() {
   const state = useTextState();
 
   return (
-    <TextGroup>
-      {state.generatedTexts.length && state.exampleText ? (
-        <div className="inner-container">
+    <TextContainer>
+      <TextGroup
+        style={{
+          height: "63%",
+        }}
+      >
+        {state.generatedTexts.length ? (
           <TextGenContainer />
-          <div className="container-divider-horizontal" />
-          <TextExampleContainer />
-        </div>
-      ) : (
-        <div>
-          <img src={TextBubble} height="64px" width="64px" alt="=" />
-          <h2 style={{ color: "white" }}>리뷰를 생성해주세요!</h2>
-        </div>
-      )}
-    </TextGroup>
+        ) : (
+          <div>
+            <img src={TextBubble} height="64px" width="64px" alt="=" />
+            <h2 style={{ color: "white" }}>리뷰를 생성해주세요!</h2>
+          </div>
+        )}
+      </TextGroup>
+      <TextGroup
+        style={{
+          height: "33%",
+        }}
+      >
+        <TextExampleContainer />
+      </TextGroup>
+    </TextContainer>
   );
 }
 

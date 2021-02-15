@@ -1,5 +1,5 @@
 import React, { useReducer, useContext, createContext, Dispatch } from "react";
-import config from "./config/config";
+import config from "../../config/config";
 
 type KeywordState = "recommended" | "used" | "activated";
 
@@ -113,7 +113,7 @@ export function TextProvider({ children }: { children: React.ReactNode }) {
     sourceText: "",
     generatedTexts: [],
     exampleText: "",
-    option: config.defaultOption,
+    option: config.review.defaultOption,
     responseTime: 0.0,
     keywords: [
       { text: "세정력", state: "recommended" },

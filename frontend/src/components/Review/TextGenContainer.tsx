@@ -1,10 +1,9 @@
 import React from "react";
 import TextGenBlock from "./TextGenBlock";
-import { useTextState } from "../../TextContext";
+import { useTextState } from "./TextContext";
 import styled from "styled-components";
 
 const TextGroup = styled.div`
-
   display: flex;
   flex-direction: column;
   justify-content: safe;

@@ -2,8 +2,8 @@ import axios, { AxiosResponse } from "axios";
 import React from "react";
 import styled from "styled-components";
 import config from "../../config/config";
-import { useTextDispatch, useTextState } from "../../TextContext";
-import TextOutContainer from "./TextOutContainer";
+import { useTextDispatch, useTextState } from "./TextContext";
+import TextResult from "./TextResult";
 import TextForm from "./TextForm";
 
 const TextPageDiv = styled.div`
@@ -15,8 +15,6 @@ const TextPageDiv = styled.div`
   position: static;
   width: 100vw;
   height: 74vh;
-  left: 0px;
-  top: 293px;
 
   flex: none;
   flex-grow: 0;
@@ -51,35 +49,22 @@ function TextPage() {
 
   const onHotkeyEntered = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.ctrlKey) {
-      if (e.key === "\n") {
+      if (e.key === "Enter") {
         let startTime = performance.now();
         axios
-          .post(config.path.server + "/api/gen", {
+          .post(config.path.server + "/api/single-sum", {
             seedText: state.sourceText,
-            option: state.option,
-            keywords: state.keywords
-              .filter((keyword) => keyword.state === "activated")
-              .map((keyword) => keyword.text),
           })
-          .then(
-            (
-              res: AxiosResponse<{
-                generatedTexts: string[];
-                exampleText: string;
-              }>
-            ) => {
-              console.log(res.data);
-              dispatch({
-                type: "SET_RES_TIME",
-                time: performance.now() - startTime,
-              });
-              dispatch({
-                type: "SET_GEN_TEXT",
-                texts: res.data.generatedTexts,
-              });
-              dispatch({ type: "SET_EXAMPLE", text: res.data.exampleText });
-            }
-          );
+          .then((res: AxiosResponse<string>) => {
+            dispatch({
+              type: "SET_RES_TIME",
+              time: performance.now() - startTime,
+            });
+            dispatch({
+              type: "SET_SUM_TEXT",
+              text: res.data,
+            });
+          });
       }
       /*
       else if (e.shiftKey && !isNaN(+e.key)) {
@@ -99,7 +84,7 @@ function TextPage() {
     <TextPageDiv onKeyPress={onHotkeyEntered} tabIndex={0}>
       <div className="text-component-wrapper">
         <TextForm />
-        <TextOutContainer />
+        <TextResult />
       </div>
     </TextPageDiv>
   );

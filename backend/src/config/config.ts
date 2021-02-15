@@ -2,7 +2,8 @@ const config = {
   path: {
     scriptPath: '',
     genServerPath: 'http://localhost:31415',
-    sumServerPath: 'http://localhost:31416',
+    singleSumServerPath: 'http://localhost:31416',
+    multiSumServerPath: 'http://localhost:31417',
   },
 };
 

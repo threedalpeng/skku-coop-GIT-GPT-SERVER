@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useTextDispatch, useTextState } from "../../TextContext";
+import { useTextDispatch, useTextState } from "./TextContext";
 import AddButton from "../../images/AddButtonWhite.svg";
 import CloseButton from "../../images/CloseButton.svg";
 
@@ -18,17 +18,23 @@ const KeywordContainer = styled.div`
 
   .keyword {
     font-size: 16px;
-    width: calc(100% - 4px);
+    width: calc(100% - 20px);
     height: calc(3em - 4px);
     margin-bottom: 0.5em;
+    padding: 0px 8px;
+
     border-radius: 10px;
 
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 
     border: 2px solid;
+
+    :hover {
+      cursor: pointer;
+    }
 
     &.recommended {
       border-color: cornflowerblue;
@@ -54,6 +60,10 @@ const KeywordContainer = styled.div`
     background-color: transparent;
     border: none;
     outline: none;
+
+    :hover {
+      cursor: pointer;
+    }
   }
 
   .add-keyword {
@@ -68,6 +78,10 @@ const KeywordContainer = styled.div`
     border: 3px dashed #ffffff;
     box-sizing: border-box;
     background-color: transparent;
+
+    :hover {
+      cursor: pointer;
+    }
   }
 
   input.add-keyword {
@@ -75,6 +89,10 @@ const KeywordContainer = styled.div`
     border: none;
     width: calc(100% - 4px);
     padding: 0px 2px;
+
+    :hover {
+      cursor: text;
+    }
   }
 `;
 
@@ -188,12 +206,7 @@ function KeywordBlocks() {
           <button
             className="img-button"
             onClick={onCloseButtonClick}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              zIndex: 99,
-            }}
+            style={{ float: "right" }}
           >
             <img src={CloseButton} height="16px" width="16px" alt="quit" />
           </button>

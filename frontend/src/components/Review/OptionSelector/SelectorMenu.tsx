@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useTextDispatch } from "../../TextContext";
+import { useTextDispatch } from "../TextContext";
 
 type OptionType = {
   optionName: string;

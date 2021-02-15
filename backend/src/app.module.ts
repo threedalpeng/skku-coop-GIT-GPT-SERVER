@@ -4,7 +4,7 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GenModule } from './gen/gen.module';
-import { EngineModule } from './engine/engine.module';
+import { SumModule } from './sum/sum.module';
 
 @Module({
   imports: [
@@ -13,7 +13,7 @@ import { EngineModule } from './engine/engine.module';
       exclude: ['/api*'],
     }),
     GenModule,
-    EngineModule,
+    SumModule,
   ],
   controllers: [AppController],
   providers: [AppService],

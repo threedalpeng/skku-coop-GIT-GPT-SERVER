@@ -1,32 +1,28 @@
 import React from "react";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
+import MultiSumPage from "./components/MultiSum/MultiSumPage";
 import PageHeader from "./components/PageHeader/PageHeader";
-import styled from "styled-components";
-import { TextProvider } from "./TextContext";
-import SelectorContainer from "./components/OptionSelector/SelectorContainer";
-import TextPage from "./components/TextPage/TextPage";
-
-const OptionPage = styled.div`
-  position: static;
-  width: 100vw;
-  height: 8vh;
-
-  flex: none;
-  align-self: stretch;
-  flex-grow: 0;
-  margin: 0px 0px;
-`;
+import ReviewPage from "./components/Review/ReviewPage";
+import SingleSumPage from "./components/SingleSum/SingleSumPage";
 
 function App() {
   return (
     <div className="App">
       <PageHeader />
-      <TextProvider>
-        <OptionPage>
-          <SelectorContainer />
-        </OptionPage>
-        <TextPage />
-      </TextProvider>
+      <Switch>
+        <Route path="/" exact={true} component={ReviewPage} />
+        <Route path="/review" component={ReviewPage} />
+        <Route path="/single-sum" component={SingleSumPage} />
+        <Route path="/multi-sum" component={MultiSumPage} />
+        <Route
+          render={({ location }) => (
+            <div>
+              <h2>이 페이지는 존재하지 않습니다: {location.pathname}</h2>
+            </div>
+          )}
+        />
+      </Switch>
     </div>
   );
 }

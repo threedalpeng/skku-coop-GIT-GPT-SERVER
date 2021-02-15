@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useTextDispatch } from "../../TextContext";
+import { useTextDispatch } from "./TextContext";
 
 const TextButton = styled.button`
   font-family: "Noto Sans KR";
@@ -43,6 +43,7 @@ const TextButton = styled.button`
   :hover {
     /*box-shadow: inset 0px 2px 8px 2px rgba(250, 84, 84, 0.25);*/
     box-shadow: inset 0px 2px 8px 2px rgba(124, 224, 255, 0.61);
+    cursor: pointer;
   }
 
   :focus {

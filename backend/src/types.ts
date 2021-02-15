@@ -11,7 +11,30 @@ type GenSrcType = {
 
 type GenTexts = {
   generatedTexts: string[];
+};
+
+type ExampleSrcType = {
+  model: string;
+};
+
+type ExampleText = {
   exampleText: string;
 };
 
-export { GenSrcType, GenTexts };
+type SumSrcType = {
+  seedText: string;
+  model: string;
+};
+
+type SumText = {
+  summarizedText: string;
+};
+
+export {
+  GenSrcType,
+  GenTexts,
+  ExampleSrcType,
+  ExampleText,
+  SumSrcType,
+  SumText,
+};
