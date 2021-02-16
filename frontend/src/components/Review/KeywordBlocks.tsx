@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useTextDispatch, useTextState } from "./TextContext";
 import AddButton from "../../images/AddButtonWhite.svg";
 import CloseButton from "../../images/CloseButton.svg";
+import Check from "../../images/Check.svg";
 
 const KeywordContainer = styled.div`
   display: flex;
@@ -30,6 +31,8 @@ const KeywordContainer = styled.div`
     justify-content: space-between;
     align-items: center;
 
+    position: relative;
+
     border: 2px solid;
 
     :hover {
@@ -49,6 +52,14 @@ const KeywordContainer = styled.div`
     &.activated {
       border-color: #acff7b;
       background-color: #dfffe3;
+    }
+
+    .check {
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      height: fit-content;
+      width: fit-content;
     }
 
     p {
@@ -202,6 +213,12 @@ function KeywordBlocks() {
           key={index}
           onClick={onKeywordClick}
         >
+          {keyword.state === "activated" ? (
+            <div className="check">
+              <img src={Check} height="24px" width="24px" alt="check" />
+            </div>
+          ) : null}
+          <div />
           <p>{keyword.text}</p>
           <button
             className="img-button"
