@@ -63,6 +63,7 @@ function reducer(state: TextState, action: Action): TextState {
           ...state.option,
           model: action.model,
         },
+        keywords: config.review.keywords[action.model],
       };
     case "SET_RCMD_TYPE":
       return {

@@ -22,7 +22,7 @@ const SelectorContainerDiv = styled.div`
 function SelectorContainer() {
   return (
     <SelectorContainerDiv>
-      {config.review.generatorOption.map((option, index) => (
+      {config.review.generatorOption.map((option: any, index: any) => (
         <SelectorMenu
           key={index}
           name={option.labelName}

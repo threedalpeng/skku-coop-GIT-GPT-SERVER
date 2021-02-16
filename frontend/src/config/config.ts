@@ -1,4 +1,4 @@
-const config = {
+const config: any = {
   path: {
     server: "http://115.145.212.100:53344",
   },
@@ -60,6 +60,16 @@ const config = {
       rcmdType: "sentence",
       rcmdNum: 5,
       temperature: "3.0",
+    },
+    keywords: {
+      cream: [
+        { text: "발림성", state: "recommended" },
+        { text: "촉촉", state: "recommended" },
+      ],
+      cleansingfoam: [
+        { text: "세정력", state: "recommended" },
+        { text: "당김", state: "recommended" },
+      ],
     },
   },
 };
