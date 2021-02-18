@@ -117,8 +117,9 @@ export function TextProvider({ children }: { children: React.ReactNode }) {
     option: config.review.defaultOption,
     responseTime: 0.0,
     keywords: [
+      { text: "피부타입", state: "recommended" },
       { text: "세정력", state: "recommended" },
-      { text: "당김", state: "recommended" },
+      { text: "자극도", state: "recommended" },
     ],
   });
 

@@ -145,7 +145,11 @@ function TextForm() {
     const newKeywords = state.keywords.slice();
     for (let i = 0; i < state.keywords.length; i++) {
       if (state.keywords[i].state !== "activated") {
-        if (sourceText.includes(state.keywords[i].text))
+        if (
+          config.review.keywordMatching[state.option.model][
+            state.keywords[i].text
+          ].some((keyword: string) => sourceText.includes(keyword))
+        )
           newKeywords[i].state = "used";
         else newKeywords[i].state = "recommended";
       }

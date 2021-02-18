@@ -58,7 +58,7 @@ function TextOutContainer() {
           height: "63%",
         }}
       >
-        {state.generatedTexts.length ? (
+        {state.generatedTexts && state.generatedTexts.length ? (
           <TextGenContainer />
         ) : (
           <div>

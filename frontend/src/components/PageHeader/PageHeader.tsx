@@ -73,7 +73,7 @@ const Navbar = styled.div`
 
     width: 30%;
     height: 100%;
-    font-size: 35%;
+    font-size: 40%;
     background-color: transparent;
     border: none;
     outline: none;

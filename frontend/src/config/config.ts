@@ -66,11 +66,29 @@ const config: any = {
         { text: "발림성", state: "recommended" },
         { text: "촉촉", state: "recommended" },
       ],
+      /*
       cleansingfoam: [
         { text: "세정력", state: "recommended" },
         { text: "당김", state: "recommended" },
       ],
+      */
+      cleansingfoam: [
+        { text: "피부타입", state: "recommended" },
+        { text: "세정력", state: "recommended" },
+        { text: "자극도", state: "recommended" },
+      ],
     },
+    keywordMatching: {
+      cream: {
+        발림성: ["발림성"],
+        촉촉: ["촉촉"],
+      },
+      cleansingfoam: {
+        피부타입: ["예민", "건성", "지성", "복합성", "민감", "수부지", "피부 타입"],
+        세정력: ["세정", "뽀득", "뽀드득"],
+        자극도: ["자극", "순해", "순하", "순한", "순했", "순함", "순합", "화끈", "빨개"]
+      }
+    }
   },
 };
 

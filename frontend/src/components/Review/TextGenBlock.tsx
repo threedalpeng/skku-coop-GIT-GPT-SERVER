@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { useTextDispatch } from "./TextContext";
+import config from "../../config/config";
+import { useTextDispatch, useTextState } from "./TextContext";
 
 const TextButton = styled.button`
   font-family: "Noto Sans KR";
@@ -59,13 +60,23 @@ type TextBlockProps = {
 };
 
 function TextGenBlock(props: TextBlockProps) {
+  const state = useTextState();
   const dispatch = useTextDispatch();
   const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    if (e.currentTarget.textContent)
+    if (e.currentTarget.textContent) {
       dispatch({
         type: "CONCAT_TO_SRC_TEXT",
         text: e.currentTarget.textContent,
       });
+      dispatch({
+        type: "SET_KEYWORDS",
+        keywords: state.keywords.map((keyword) => {
+          if (keyword.state !== "used")
+            keyword.state = "recommended";
+          return keyword;
+        }),
+      });
+    }
   };
 
   return (
