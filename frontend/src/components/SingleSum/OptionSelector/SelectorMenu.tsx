@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useTextDispatch } from "../TextContext";
 // import { useTextDispatch } from "../TextContext";
 
 type OptionType = {
@@ -148,7 +149,7 @@ const Selector = styled.div`
 `;
 
 function SelectorMenu(props: SelectorType) {
-  // const dispatch = useTextDispatch();
+  const dispatch = useTextDispatch();
 
   const switchFormType = (props: SelectorType) => {
     switch (props.formType) {
@@ -199,6 +200,8 @@ function SelectorMenu(props: SelectorType) {
 
   const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     switch (props.value) {
+      case "model":
+        return dispatch({ type: "SET_MODEL", model: e.target.value });
     }
   };
 

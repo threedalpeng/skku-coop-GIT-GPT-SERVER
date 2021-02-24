@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-// import config from "../../../config/config";
-// import SelectorMenu from "./SelectorMenu";
+import config from "../../../config/config";
+import SelectorMenu from "./SelectorMenu";
 
 const SelectorContainerDiv = styled.div`
   font-size: 18px;
@@ -22,6 +22,18 @@ const SelectorContainerDiv = styled.div`
 function SelectorContainer() {
   return (
     <SelectorContainerDiv>
+      {config.review.summarizerOption.map((option: any, index: any) => (
+        <SelectorMenu
+          key={index}
+          name={option.labelName}
+          value={option.labelValue}
+          defaultValue={option.defaultValue}
+          formType={option.formType}
+          options={option.options ? option.options : null}
+          maxValue={option.maxValue ? option.maxValue : null}
+          minValue={option.minValue ? option.minValue : null}
+        />
+      ))}
     </SelectorContainerDiv>
   );
 }

@@ -4,12 +4,16 @@ type TextState = {
   sourceText: string;
   summarizedText: string;
   responseTime: number;
+  option: {
+    model: string;
+  };
 };
 
 type Action =
   | { type: "SET_SRC_TEXT"; text: string }
   | { type: "SET_SUM_TEXT"; text: string }
-  | { type: "SET_RES_TIME"; time: number };
+  | { type: "SET_RES_TIME"; time: number }
+  | { type: "SET_MODEL"; model: string };
 
 type TextDispatch = Dispatch<Action>;
 
@@ -33,6 +37,13 @@ function reducer(state: TextState, action: Action): TextState {
         ...state,
         responseTime: action.time,
       };
+    case "SET_MODEL":
+      return {
+        ...state,
+        option: {
+          model: action.model,
+        },
+      };
     default:
       throw new Error("Unhandled action");
   }
@@ -43,6 +54,9 @@ export function TextProvider({ children }: { children: React.ReactNode }) {
     sourceText: "",
     summarizedText: "",
     responseTime: 0.0,
+    option: {
+      model: "dacon",
+    },
   });
 
   return (

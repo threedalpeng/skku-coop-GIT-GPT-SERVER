@@ -115,7 +115,7 @@ function TextForm() {
     axios
       .post(config.path.server + "/api/sum/single", {
         seedText: state.sourceText,
-        model: "cleansingfoam",
+        model: state.option.model,
       })
       .then((res: AxiosResponse<{ summarizedText: string }>) => {
         dispatch({ type: "SET_RES_TIME", time: performance.now() - startTime });

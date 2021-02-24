@@ -84,11 +84,51 @@ const config: any = {
         촉촉: ["촉촉"],
       },
       cleansingfoam: {
-        피부타입: ["예민", "건성", "지성", "복합성", "민감", "수부지", "피부 타입"],
+        피부타입: [
+          "예민",
+          "건성",
+          "지성",
+          "복합성",
+          "민감",
+          "수부지",
+          "피부 타입",
+        ],
         세정력: ["세정", "뽀득", "뽀드득"],
-        자극도: ["자극", "순해", "순하", "순한", "순했", "순함", "순합", "화끈", "빨개"]
-      }
-    }
+        자극도: [
+          "자극",
+          "순해",
+          "순하",
+          "순한",
+          "순했",
+          "순함",
+          "순합",
+          "화끈",
+          "빨개",
+        ],
+      },
+    },
+    summarizerOption: [
+      {
+        formType: "select",
+        labelName: "카테고리",
+        labelValue: "model",
+        defaultValue: "dacon",
+        options: [
+          {
+            optionName: "Dacon",
+            optionValue: "dacon",
+          },
+          {
+            optionName: "NLTK 추출",
+            optionValue: "nltk_abstract",
+          },
+          {
+            optionName: "NLTK 요약",
+            optionValue: "nltk_extract",
+          },
+        ],
+      },
+    ],
   },
 };
 
