@@ -119,11 +119,11 @@ const config: any = {
             optionValue: "dacon",
           },
           {
-            optionName: "NLTK 추출",
+            optionName: "NLTK 추상 요약",
             optionValue: "nltk_abstract",
           },
           {
-            optionName: "NLTK 요약",
+            optionName: "NLTK 추출 요약",
             optionValue: "nltk_extract",
           },
         ],
