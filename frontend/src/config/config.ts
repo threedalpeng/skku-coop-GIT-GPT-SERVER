@@ -110,7 +110,7 @@ const config: any = {
     summarizerOption: [
       {
         formType: "select",
-        labelName: "카테고리",
+        labelName: "모델",
         labelValue: "model",
         defaultValue: "dacon",
         options: [
@@ -119,11 +119,11 @@ const config: any = {
             optionValue: "dacon",
           },
           {
-            optionName: "NLTK 추상 요약",
+            optionName: "모두의 말뭉치 추상 요약",
             optionValue: "nltk_abstract",
           },
           {
-            optionName: "NLTK 추출 요약",
+            optionName: "모두의 말뭉치 추출 요약",
             optionValue: "nltk_extract",
           },
         ],
